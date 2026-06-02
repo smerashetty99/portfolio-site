@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Smera Shetty — UX Designer</title>
+  <meta name="description" content="UX Designer rooted in psychology. UX research and design across government, startups, and non-profits."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+<div class="cursor"></div>
+<div class="scroll-progress" style="width:0%"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">✦ Smera Shetty</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#process">Process</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="resume.html">Resume</a></li>
+    <li><a href="#contact" class="nav-cta">Let's Talk</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg-gradient"></div>
+  <div class="hero-stars"></div>
+  <div class="hero-lights">
+    <div class="string-lights"></div>
+  </div>
+
+  <div class="gate">
+    <div class="gate-sign">✦ Open for opportunities ✦</div>
+    <h1>I am <em>Smera Shetty</em>,<br/>a UX designer rooted<br/>in psychology.</h1>
+    <p class="gate-subtitle">UX research and design across government, startups, and non-profits — with a psychology lens.</p>
+    <a href="#projects" class="btn-ticket">🎡 See my work</a>
+  </div>
+
+  <div class="scroll-hint">
+    <span>Scroll down</span>
+    <svg width="14" height="22" viewBox="0 0 14 22" fill="none">
+      <path d="M7 2v18M1 15l6 6 6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </div>
+</section>
+
+<!-- scallop hero → about -->
+<div class="scallop">
+  <svg viewBox="0 0 1440 48" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <path d="M0,48 C80,0 160,48 240,48 C320,48 400,0 480,0 C560,0 640,48 720,48 C800,48 880,0 960,0 C1040,0 1120,48 1200,48 C1280,48 1360,0 1440,0 L1440,48 Z" fill="#1e3a3a"/>
+    <path d="M0,48 C80,0 160,48 240,48 C320,48 400,0 480,0 C560,0 640,48 720,48 C800,48 880,0 960,0 C1040,0 1120,48 1200,48 C1280,48 1360,0 1440,0 L1440,48 Z" fill="#ffffff"/>
+  </svg>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-inner">
+    <div class="about-photo-wrap fade-up">
+      <div class="about-deco"></div>
+      <div class="about-deco2"></div>
+      <div class="about-photo">
+        <!-- Replace smera.jpg with your actual photo file on GitHub -->
+        <img src="smera.jpg" alt="Smera Shetty" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+        <div class="about-photo-placeholder" style="display:none">SS</div>
+      </div>
+    </div>
+
+    <div class="about-content fade-up" style="transition-delay:.15s">
+      <div class="section-label">🎡 About me</div>
+      <h2 class="section-title">Hello, I'm Smera!</h2>
+      <p>I'm a UX Designer with a background in psychology — which means I don't just design screens, I think about the people behind them: their motivations, behaviours, mental models, and moments of friction.</p>
+      <p>I've worked across government, startups, and non-profits, bringing the same curiosity and rigour to every project. Whether I'm running discovery interviews or iterating in Figma, I'm always asking <em>why</em> before I ask <em>what</em>.</p>
+      <p>I believe the best design feels inevitable — like it couldn't have been any other way.</p>
+      <div class="about-tags">
+        <span class="about-tag">Psychology-led design</span>
+        <span class="about-tag">UX Research</span>
+        <span class="about-tag">Prototyping</span>
+        <span class="about-tag">Systems thinking</span>
+        <span class="about-tag">Accessibility</span>
+        <span class="about-tag">Non-profit & Gov</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED PROJECTS -->
+<div class="projects-header" id="projects">
+  <div class="section-label">🎠 Main Attractions</div>
+  <h2 class="section-title">Featured Projects</h2>
+  <p>Scroll down to spin the wheel — or click any cart to jump to a project.</p>
+</div>
+
+<!-- FERRIS WHEEL SECTION -->
+<div id="ferris-section">
+  <div class="ferris-sticky">
+    <div class="ferris-inner">
+
+      <!-- Wheel -->
+      <div class="ferris-wheel-side">
+        <div class="ferris-svg-wrap">
+          <svg id="ferris-svg" viewBox="0 0 520 520" xmlns="http://www.w3.org/2000/svg">
+            <!-- Outer rim -->
+            <circle cx="260" cy="270" r="210" fill="none" stroke="rgba(142,197,197,0.35)" stroke-width="2"/>
+            <circle cx="260" cy="270" r="210" fill="none" stroke="rgba(203,230,230,0.6)" stroke-width="3.5" stroke-dasharray="12 8"/>
+
+            <!-- Rotating group (spokes + gondolas) -->
+            <g id="fw-wheel" style="transform-origin:260px 270px;transition:transform .8s cubic-bezier(.25,.46,.45,.94)">
+              <!-- spokes and gondolas injected by JS -->
+            </g>
+
+            <!-- Hub -->
+            <circle cx="260" cy="270" r="22" fill="#278067" stroke="rgba(203,230,230,0.8)" stroke-width="2.5"/>
+            <text x="260" y="276" text-anchor="middle" font-size="16" fill="white">✦</text>
+
+            <!-- Support legs -->
+            <line x1="260" y1="480" x2="170" y2="515" stroke="rgba(142,197,197,0.7)" stroke-width="4" stroke-linecap="round"/>
+            <line x1="260" y1="480" x2="350" y2="515" stroke="rgba(142,197,197,0.7)" stroke-width="4" stroke-linecap="round"/>
+            <rect x="128" y="512" width="88" height="7" rx="3.5" fill="rgba(142,197,197,0.5)"/>
+            <rect x="304" y="512" width="88" height="7" rx="3.5" fill="rgba(142,197,197,0.5)"/>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Preview -->
+      <div class="ferris-preview-side">
+        <div class="preview-card">
+          <!-- content injected by JS -->
+        </div>
+      </div>
+
+      <!-- Initial hint -->
+      <div class="ferris-hint">↓ Scroll to explore projects</div>
+    </div>
+  </div>
+
+  <!-- Scroll driver: 6 screens (1 for entry + 5 for projects) -->
+  <div style="height:600vh;pointer-events:none;"></div>
+</div>
+
+<!-- MIDWAY -->
+<section id="midway">
+  <div class="midway-header fade-up">
+    <div class="section-label">🎪 Side Attractions</div>
+    <h2 class="section-title">More Work</h2>
+  </div>
+  <div class="midway-track">
+    <div class="booth-card">
+      <div class="booth-top"></div>
+      <div class="booth-card-body">
+        <div class="booth-card-icon">🔍</div>
+        <h3 class="booth-card-title">Heuristic Evaluation</h3>
+        <p class="booth-card-desc">Deep-dive audit of a B2B SaaS product identifying 30+ usability issues with severity ratings and recommendations.</p>
+        <a href="#" class="booth-card-link">View project →</a>
+      </div>
+    </div>
+    <div class="booth-card">
+      <div class="booth-top"></div>
+      <div class="booth-card-body">
+        <div class="booth-card-icon">🗺️</div>
+        <h3 class="booth-card-title">Journey Mapping</h3>
+        <p class="booth-card-desc">Cross-functional workshop facilitation and journey mapping for a healthcare non-profit onboarding flow.</p>
+        <a href="#" class="booth-card-link">View project →</a>
+      </div>
+    </div>
+    <div class="booth-card">
+      <div class="booth-top"></div>
+      <div class="booth-card-body">
+        <div class="booth-card-icon">📊</div>
+        <h3 class="booth-card-title">Design Metrics</h3>
+        <p class="booth-card-desc">Defining and tracking UX KPIs — task success rate, time-on-task, SUS scores — for a government digital service.</p>
+        <a href="#" class="booth-card-link">View project →</a>
+      </div>
+    </div>
+    <div class="booth-card">
+      <div class="booth-top"></div>
+      <div class="booth-card-body">
+        <div class="booth-card-icon">🧩</div>
+        <h3 class="booth-card-title">Component Library</h3>
+        <p class="booth-card-desc">Building a scalable Figma component library with auto-layout, variants, and full interaction states for a startup.</p>
+        <a href="#" class="booth-card-link">View project →</a>
+      </div>
+    </div>
+    <div class="booth-card">
+      <div class="booth-top"></div>
+      <div class="booth-card-body">
+        <div class="booth-card-icon">🎤</div>
+        <h3 class="booth-card-title">User Interviews</h3>
+        <p class="booth-card-desc">Designing and conducting 20+ semi-structured interviews, synthesising findings with affinity mapping and thematic analysis.</p>
+        <a href="#" class="booth-card-link">View project →</a>
+      </div>
+    </div>
+    <div class="booth-card">
+      <div class="booth-top"></div>
+      <div class="booth-card-body">
+        <div class="booth-card-icon">♿</div>
+        <h3 class="booth-card-title">Inclusive Design</h3>
+        <p class="booth-card-desc">WCAG 2.1 AA audit and full remediation plan for a public-sector website serving over 40,000 users monthly.</p>
+        <a href="#" class="booth-card-link">View project →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process">
+  <div class="process-inner">
+    <div style="text-align:center" class="fade-up">
+      <div class="section-label">🎢 How I Work</div>
+      <h2 class="section-title">My Design Process</h2>
+    </div>
+    <div class="process-steps">
+      <div class="process-step fade-up" style="transition-delay:.05s">
+        <div class="process-num">01</div>
+        <div class="process-icon">🔭</div>
+        <div class="process-title">Discover</div>
+        <p class="process-desc">I start with people — interviews, research, and observation to understand real needs before touching a single wireframe.</p>
+      </div>
+      <div class="process-step fade-up" style="transition-delay:.1s">
+        <div class="process-num">02</div>
+        <div class="process-icon">🧠</div>
+        <div class="process-title">Define</div>
+        <p class="process-desc">Synthesis through affinity mapping, journey maps, and insight frameworks — turning raw data into clear design problems.</p>
+      </div>
+      <div class="process-step fade-up" style="transition-delay:.15s">
+        <div class="process-num">03</div>
+        <div class="process-icon">✏️</div>
+        <div class="process-title">Design</div>
+        <p class="process-desc">Sketches to high-fidelity prototypes, always grounded in the research. I design for clarity first, delight second.</p>
+      </div>
+      <div class="process-step fade-up" style="transition-delay:.2s">
+        <div class="process-num">04</div>
+        <div class="process-icon">🧪</div>
+        <div class="process-title">Test & Iterate</div>
+        <p class="process-desc">Usability tests, feedback loops, and data analysis — design is never done, just getting better with each round.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="fade-up">
+    <div class="section-label">🎠 Toolkit</div>
+    <h2 class="section-title">Skills & Tools</h2>
+  </div>
+  <div class="skills-grid">
+    <span class="skill-pill">Figma</span>
+    <span class="skill-pill">Adobe XD</span>
+    <span class="skill-pill">Framer</span>
+    <span class="skill-pill">Sketch</span>
+    <span class="skill-pill">UX Research</span>
+    <span class="skill-pill">Usability Testing</span>
+    <span class="skill-pill">Affinity Mapping</span>
+    <span class="skill-pill">Card Sorting</span>
+    <span class="skill-pill">Journey Mapping</span>
+    <span class="skill-pill">Heuristic Evaluation</span>
+    <span class="skill-pill">Information Architecture</span>
+    <span class="skill-pill">Interaction Design</span>
+    <span class="skill-pill">Prototyping</span>
+    <span class="skill-pill">Design Systems</span>
+    <span class="skill-pill">WCAG Accessibility</span>
+    <span class="skill-pill">Psychology of UX</span>
+    <span class="skill-pill">Miro</span>
+    <span class="skill-pill">Notion</span>
+    <span class="skill-pill">HTML / CSS</span>
+    <span class="skill-pill">Optimal Workshop</span>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta-block">
+  <div class="hero-stars"></div>
+  <div class="hero-lights" style="position:absolute;top:0;left:0;right:0;">
+    <div class="string-lights"></div>
+  </div>
+  <div class="cta-inner fade-up">
+    <div class="section-label">🎪 Step Right Up</div>
+    <h2>Got a project in mind?</h2>
+    <p>I'm always open to new roles, collaborations, and conversations. Whether you have a brief or just a spark — let's make something meaningful.</p>
+    <div class="cta-buttons">
+      <a href="#contact" class="btn-ticket">Let's work together</a>
+      <a href="resume.html" class="btn-secondary">See my resume →</a>
+    </div>
+  </div>
+</section>
+
+<!-- scallop into footer -->
+<div class="scallop" style="background:#1e3a3a">
+  <svg viewBox="0 0 1440 48" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <path d="M0,0 C80,48 160,0 240,0 C320,0 400,48 480,48 C560,48 640,0 720,0 C800,0 880,48 960,48 C1040,48 1120,0 1200,0 C1280,0 1360,48 1440,48 L1440,48 L0,48 Z" fill="#1e3a3a"/>
+  </svg>
+</div>
+
+<!-- FOOTER / CONTACT -->
+<footer id="contact">
+  <div class="footer-inner">
+    <div style="font-size:2.4rem;margin-bottom:16px;animation:well-glow 3s ease-in-out infinite alternate;">🌟</div>
+    <h2>Let's build something <span>meaningful.</span></h2>
+    <p>I'm always open to new opportunities, collabs, and conversations. Drop me a line anytime.</p>
+    <div class="contact-stubs">
+      <a href="mailto:smerashetty.hfsi@gmail.com" class="stub">
+        <span class="stub-icon">✉️</span>
+        <div><span class="stub-label">Email</span><span class="stub-value">smerashetty.hfsi@gmail.com</span></div>
+      </a>
+      <a href="https://www.linkedin.com/in/smera-shetty" target="_blank" class="stub">
+        <span class="stub-icon">💼</span>
+        <div><span class="stub-label">LinkedIn</span><span class="stub-value">linkedin.com/in/smera-shetty</span></div>
+      </a>
+      <a href="https://smerashetty.com" target="_blank" class="stub">
+        <span class="stub-icon">🌐</span>
+        <div><span class="stub-label">Portfolio</span><span class="stub-value">smerashetty.com</span></div>
+      </a>
+      <a href="resume.html" class="stub">
+        <span class="stub-icon">🎟️</span>
+        <div><span class="stub-label">Resume</span><span class="stub-value">Download PDF</span></div>
+      </a>
+    </div>
+    <p class="footer-tagline">Thanks for visiting. See you on the next ride.</p>
+    <div class="footer-wave">👋</div>
+  </div>
+</footer>
+
+<style>
+@keyframes well-glow {
+  from { filter: drop-shadow(0 0 8px rgba(203,230,230,.4)); }
+  to   { filter: drop-shadow(0 0 28px rgba(203,230,230,.9)); }
+}
+</style>
+
+<script src="main.js"></script>
+</body>
+</html>
