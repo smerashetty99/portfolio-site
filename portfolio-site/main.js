@@ -1,15 +1,15 @@
-// ===== STAR CURSOR =====
+// ===== 4-POINT STAR CURSOR (✦ shape) =====
 const cursor = document.querySelector('.cursor');
 if (cursor) {
-  cursor.innerHTML = `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6L12 2z"
-      fill="#BCD8EC" stroke="#2a6090" stroke-width="1" stroke-linejoin="round"/>
+  cursor.innerHTML = `<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M12 2 L13.8 10.2 L22 12 L13.8 13.8 L12 22 L10.2 13.8 L2 12 L10.2 10.2 Z"
+      fill="#BCD8EC" stroke="#2a6090" stroke-width="0.8" stroke-linejoin="round"/>
   </svg>`;
   document.addEventListener('mousemove', e => {
     cursor.style.left = e.clientX + 'px';
     cursor.style.top  = e.clientY + 'px';
   });
-  document.querySelectorAll('a, button, .gondola-group, .booth-card, .stub, .skill-pill, .art-card, .marketing-card').forEach(el => {
+  document.querySelectorAll('a, button, .gondola-group, .gondola-outer, .stub, .skill-pill, .art-card, .marketing-card, .cs-other-card').forEach(el => {
     el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
     el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
   });
@@ -17,9 +17,12 @@ if (cursor) {
 
 // ===== SCROLL PROGRESS =====
 const bar = document.querySelector('.scroll-progress');
-if (bar) window.addEventListener('scroll', () => {
-  bar.style.width = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight) * 100) + '%';
-});
+if (bar) {
+  window.addEventListener('scroll', () => {
+    const pct = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight) * 100;
+    bar.style.width = pct + '%';
+  });
+}
 
 // ===== STARS =====
 function makeStars(container, n) {
@@ -34,19 +37,20 @@ function makeStars(container, n) {
 }
 document.querySelectorAll('.hero-stars').forEach(c => makeStars(c, 90));
 
-// ===== HERO TEXT ANIMATION =====
+// ===== HERO TEXT ANIMATION (word spacing fixed with white-space:pre) =====
 const h1 = document.querySelector('.gate h1');
 if (h1) {
   const html = h1.innerHTML;
   const parser = new DOMParser();
-  const doc = parser.parseFromString(`<div>${html}</div>`, 'text/html');
+  const doc = parser.parseFromString('<div>' + html + '</div>', 'text/html');
   const nodes = [...doc.querySelector('div').childNodes];
   h1.innerHTML = '';
   let delay = 0.1;
+
   nodes.forEach(node => {
     if (node.nodeType === Node.TEXT_NODE) {
-      const words = node.textContent.split(' ').filter(w => w.trim());
-      words.forEach((w, i) => {
+      const words = node.textContent.split(/\s+/).filter(w => w.length > 0);
+      words.forEach(w => {
         const span = document.createElement('span');
         span.className = 'word';
         span.textContent = w + ' ';
@@ -55,7 +59,7 @@ if (h1) {
         delay += 0.12;
       });
     } else if (node.nodeName === 'EM') {
-      const words = node.textContent.split(' ').filter(w => w.trim());
+      const words = node.textContent.split(/\s+/).filter(w => w.length > 0);
       words.forEach(w => {
         const em = document.createElement('em');
         const span = document.createElement('span');
@@ -93,46 +97,48 @@ const fo = new IntersectionObserver(es => {
 }, { threshold: 0.08 });
 document.querySelectorAll('.fade-up').forEach(el => fo.observe(el));
 
-// ===== PROJECTS DATA (from resume) =====
+// ===== PROJECTS DATA =====
 const PROJECTS = [
   {
     num: 'Case Study 01', emoji: '🌾',
     title: 'Kisan4U',
-    desc: 'Designed an accessible e-commerce platform for farmers and suppliers in a fast-paced startup environment. Focused on low-literacy users, strengthening CTAs and simplifying navigation through user research and usability testing.',
+    desc: 'Designed an accessible e-commerce platform for farmers and suppliers. Focused on low-literacy users — strengthening CTAs, simplifying navigation, and reducing friction through user research and usability testing.',
     tags: ['E-Commerce UX', 'Accessibility', 'User Research', 'Figma'],
     color: '#D6E5BD',
-    link: 'https://smerashetty.com'
+    link: 'kisan4u.html'
   },
   {
     num: 'Case Study 02', emoji: '🦆',
     title: 'GooseConnect',
-    desc: 'Designed a prototype app to help University of Waterloo students build communities. Conducted user research, developed customer profiles, mapped user journeys, and built an intuitive Figma prototype to remove social barriers.',
+    desc: 'A platform helping University of Waterloo students build authentic campus connections. Led research, journey mapping, prototyping, and coordination as Team Facilitator and UX Designer.',
     tags: ['App Design', 'UX Research', 'Prototyping', 'Community'],
     color: '#BCD8EC',
-    link: 'https://smerashetty.com'
+    link: 'gooseconnect.html'
   },
   {
     num: 'Case Study 03', emoji: '🏛️',
     title: 'Ontario Exposure Registry',
-    desc: 'Contributed to UX research and design for a public-facing government service at the Ontario Ministry of Transportation. Conducted interviews, usability testing, synthesized findings into personas and journey maps.',
+    desc: 'UX research and design for a public-facing government service at the Ontario Ministry of Transportation. Conducted interviews, usability testing, and synthesized findings into personas and journey maps.',
     tags: ['Government UX', 'Accessibility', 'Research', 'Agile'],
     color: '#DCCCE8',
-    link: '#'
+    link: 'mto.html'
   },
   {
-    num: 'Case Study 04', emoji: '🕊️',
-    title: 'Peace for All Canada',
-    desc: 'Designed and scheduled social media content, created promotional materials including posters, reels, and stories. Assisted in content planning and strategy for community outreach campaigns.',
-    tags: ['Design', 'Social Media', 'Branding', 'Non-profit'],
+    num: 'Case Study 04', emoji: '🍫',
+    title: "Willie's Chocolates",
+    desc: 'Reimagined a modern-day Wonka brand — designing a magical, nostalgic digital chocolate experience for dreamers and nostalgics alike. Focused on brand storytelling and immersive UX.',
+    tags: ['Brand UX', 'Visual Design', 'E-Commerce', 'Figma'],
     color: '#FFCBE1',
-    link: '#'
+    link: 'willies.html'
   },
 ];
 
 // ===== FERRIS WHEEL =====
 const CX = 270, CY = 270, R = 210;
-const GONDOLA_W = 72, GONDOLA_H = 52;
-const angles = [90, 162, 234, 306, 18, 90]; // 4 projects only using first 4 slots; 5th angle unused
+const GONDOLA_W = 90, GONDOLA_H = 65;
+
+// 4 equally spaced gondolas: top (0), right (90), bottom (180), left (270)
+const projectAngles = [0, 90, 180, 270];
 
 function polar(deg, r) {
   const rad = ((deg - 90) * Math.PI) / 180;
@@ -144,67 +150,78 @@ function buildFerris() {
   const wg  = document.getElementById('fw-wheel');
   if (!svg || !wg) return;
 
-  const projectAngles = [90, 162, 234, 306]; // 4 projects
-
   projectAngles.forEach((a, i) => {
     const pos = polar(a, R);
     const p = PROJECTS[i];
+    const attachX = pos.x;
+    const attachY = pos.y;
 
     // spoke
-    const line = document.createElementNS('http://www.w3.org/2000/svg','line');
+    const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
     line.setAttribute('x1', CX); line.setAttribute('y1', CY);
-    line.setAttribute('x2', pos.x); line.setAttribute('y2', pos.y);
+    line.setAttribute('x2', attachX); line.setAttribute('y2', attachY);
     line.setAttribute('stroke', 'rgba(188,216,236,0.5)');
-    line.setAttribute('stroke-width', '2');
+    line.setAttribute('stroke-width', '2.5');
     wg.appendChild(line);
 
-    // gondola group — transform-origin at connection point
-    const g = document.createElementNS('http://www.w3.org/2000/svg','g');
-    g.setAttribute('class','gondola-group');
+    // OUTER group handles counter-rotation (gravity fix)
+    const outer = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+    outer.setAttribute('class', 'gondola-outer');
+    outer.setAttribute('data-index', i);
+    outer.dataset.cx = attachX;
+    outer.dataset.cy = attachY;
+    outer.style.transformBox = 'view-box';
+    outer.style.transformOrigin = attachX + 'px ' + attachY + 'px';
+
+    // INNER group handles sway animation
+    const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+    g.setAttribute('class', 'gondola-group');
     g.setAttribute('data-index', i);
 
-    // set transform-origin for sway at top of gondola
-    const connectX = pos.x, connectY = pos.y + 2;
-
-    // hanging cord
-    const cord = document.createElementNS('http://www.w3.org/2000/svg','line');
-    cord.setAttribute('x1', pos.x); cord.setAttribute('y1', pos.y);
-    cord.setAttribute('x2', pos.x); cord.setAttribute('y2', pos.y + 18);
-    cord.setAttribute('stroke','rgba(188,216,236,.55)'); cord.setAttribute('stroke-width','2');
+    // cord
+    const cord = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+    cord.setAttribute('x1', attachX); cord.setAttribute('y1', attachY);
+    cord.setAttribute('x2', attachX); cord.setAttribute('y2', attachY + 20);
+    cord.setAttribute('stroke', 'rgba(188,216,236,.65)');
+    cord.setAttribute('stroke-width', '2');
     g.appendChild(cord);
 
     // cart
-    const rect = document.createElementNS('http://www.w3.org/2000/svg','rect');
-    rect.setAttribute('class','gondola-rect');
-    rect.setAttribute('x', pos.x - GONDOLA_W/2);
-    rect.setAttribute('y', pos.y + 18);
+    const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+    rect.setAttribute('class', 'gondola-rect');
+    rect.setAttribute('x', attachX - GONDOLA_W / 2);
+    rect.setAttribute('y', attachY + 20);
     rect.setAttribute('width', GONDOLA_W);
     rect.setAttribute('height', GONDOLA_H);
-    rect.setAttribute('rx','12');
+    rect.setAttribute('rx', '14');
     rect.setAttribute('fill', p.color);
-    rect.setAttribute('stroke','rgba(42,96,144,0.35)');
-    rect.setAttribute('stroke-width','2');
+    rect.setAttribute('stroke', 'rgba(42,96,144,0.35)');
+    rect.setAttribute('stroke-width', '2');
     g.appendChild(rect);
 
     // emoji
-    const emoji = document.createElementNS('http://www.w3.org/2000/svg','text');
-    emoji.setAttribute('x', pos.x); emoji.setAttribute('y', pos.y + 50);
-    emoji.setAttribute('text-anchor','middle'); emoji.setAttribute('font-size','24');
+    const emoji = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+    emoji.setAttribute('x', attachX);
+    emoji.setAttribute('y', attachY + 20 + Math.round(GONDOLA_H * 0.5));
+    emoji.setAttribute('text-anchor', 'middle');
+    emoji.setAttribute('dominant-baseline', 'middle');
+    emoji.setAttribute('font-size', '28');
     emoji.textContent = p.emoji;
     g.appendChild(emoji);
 
-    // label
-    const lbl = document.createElementNS('http://www.w3.org/2000/svg','text');
-    lbl.setAttribute('x', pos.x); lbl.setAttribute('y', pos.y + 66);
-    lbl.setAttribute('text-anchor','middle'); lbl.setAttribute('font-size','9');
-    lbl.setAttribute('font-family','DM Mono, monospace'); lbl.setAttribute('fill','rgba(29,63,94,0.65)');
-    lbl.textContent = String(i+1).padStart(2,'0');
+    // number label
+    const lbl = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+    lbl.setAttribute('x', attachX);
+    lbl.setAttribute('y', attachY + 20 + GONDOLA_H - 8);
+    lbl.setAttribute('text-anchor', 'middle');
+    lbl.setAttribute('font-size', '9');
+    lbl.setAttribute('font-family', 'DM Mono, monospace');
+    lbl.setAttribute('fill', 'rgba(29,63,94,0.6)');
+    lbl.textContent = String(i + 1).padStart(2, '0');
     g.appendChild(lbl);
 
-    // store sway origin as data attrs for JS
-    g.dataset.cx = connectX; g.dataset.cy = connectY;
-
-    wg.appendChild(g);
+    outer.appendChild(g);
+    wg.appendChild(outer);
   });
 }
 buildFerris();
@@ -217,12 +234,23 @@ const previewCard   = document.querySelector('.preview-card');
 
 let currentProject = -1;
 let hasSplit = false;
-const projectAngles = [90, 162, 234, 306];
+let currentRotation = 0;
+
+function applyGondolaCounterRotation(rotation) {
+  document.querySelectorAll('.gondola-outer').forEach(outer => {
+    const cx = parseFloat(outer.dataset.cx);
+    const cy = parseFloat(outer.dataset.cy);
+    outer.style.transformBox = 'view-box';
+    outer.style.transformOrigin = cx + 'px ' + cy + 'px';
+    outer.style.transition = 'transform 0.85s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+    outer.style.transform = 'rotate(' + (-rotation) + 'deg)';
+  });
+}
 
 function swayGondolas() {
   document.querySelectorAll('.gondola-group').forEach(g => {
     g.classList.remove('gondola-sway');
-    void g.offsetWidth; // reflow to restart
+    void g.offsetWidth;
     g.classList.add('gondola-sway');
     setTimeout(() => g.classList.remove('gondola-sway'), 1500);
   });
@@ -232,15 +260,21 @@ function goToProject(index) {
   if (index === currentProject) return;
   currentProject = index;
 
-  // Rotate wheel so selected gondola comes forward (toward right center)
+  // Bring selected gondola to the right (90deg = 3 o'clock)
   const angle = projectAngles[index];
-  // We want angle to map to "right" (0° in our top-origin system = 270° standard)
-  const rotation = -(angle - 270);
+  const rotation = -(angle - 90);
+  currentRotation = rotation;
+
   wheelGroup.style.transition = 'transform 0.85s cubic-bezier(0.25,0.46,0.45,0.94)';
-  wheelGroup.style.transform = `rotate(${rotation}deg)`;
+  wheelGroup.style.transform = 'rotate(' + rotation + 'deg)';
+
+  applyGondolaCounterRotation(rotation);
 
   setTimeout(swayGondolas, 900);
 
+  document.querySelectorAll('.gondola-outer').forEach((outer, i) => {
+    outer.classList.toggle('active-outer', i === index);
+  });
   document.querySelectorAll('.gondola-group').forEach((g, i) => {
     g.classList.toggle('active', i === index);
   });
@@ -249,19 +283,17 @@ function goToProject(index) {
 }
 
 function buildPreviewHTML(p) {
-  return `
-    <div class="preview-card-inner">
-      <div class="preview-img" style="background:${p.color}">
-        <span style="font-size:5.5rem">${p.emoji}</span>
-      </div>
-      <div class="preview-body">
-        <div class="preview-num">${p.num}</div>
-        <h3 class="preview-title">${p.title}</h3>
-        <p class="preview-desc">${p.desc}</p>
-        <div class="preview-tags">${p.tags.map(t=>`<span class="preview-tag">${t}</span>`).join('')}</div>
-        <a href="${p.link}" class="btn-view" target="${p.link !== '#' ? '_blank' : '_self'}">View case study →</a>
-      </div>
-    </div>`;
+  return '<div class="preview-card-inner">' +
+    '<div class="preview-img" style="background:' + p.color + '">' +
+    '<span style="font-size:6rem">' + p.emoji + '</span>' +
+    '</div>' +
+    '<div class="preview-body">' +
+    '<div class="preview-num">' + p.num + '</div>' +
+    '<h3 class="preview-title">' + p.title + '</h3>' +
+    '<p class="preview-desc">' + p.desc + '</p>' +
+    '<div class="preview-tags">' + p.tags.map(t => '<span class="preview-tag">' + t + '</span>').join('') + '</div>' +
+    '<a href="' + p.link + '" class="btn-view">View case study →</a>' +
+    '</div></div>';
 }
 
 if (previewCard) {
@@ -314,30 +346,28 @@ document.getElementById('ferris-svg')?.addEventListener('click', e => {
   }
 });
 
-// ===== ART CAROUSEL DRAG =====
-const artTrack = document.querySelector('.art-carousel-track');
-if (artTrack) {
-  let down = false, startX, scrollLeft;
-  const wrap = artTrack.parentElement;
-  wrap.addEventListener('mousedown', e => { down=true; startX=e.pageX; scrollLeft=artTrack.scrollLeft||0; });
-  wrap.addEventListener('mouseup', () => down=false);
-  wrap.addEventListener('mouseleave', () => down=false);
-}
-
-// ===== MIDWAY DRAG =====
-const track = document.querySelector('.midway-track');
-if (track) {
-  let down=false, startX, sl;
-  track.addEventListener('mousedown', e=>{down=true;startX=e.pageX-track.offsetLeft;sl=track.scrollLeft;});
-  track.addEventListener('mouseleave',()=>down=false);
-  track.addEventListener('mouseup',()=>down=false);
-  track.addEventListener('mousemove',e=>{if(!down)return;e.preventDefault();track.scrollLeft=sl-(e.pageX-track.offsetLeft-startX)*1.5;});
-}
-
-// ===== SMOOTH SCROLL =====
-document.querySelectorAll('a[href^="#"]').forEach(a=>{
-  a.addEventListener('click',e=>{
-    const t=document.querySelector(a.getAttribute('href'));
-    if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth'});}
+// ===== SMOOTH SCROLL (with nav offset, fixed for #contact) =====
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const href = a.getAttribute('href');
+    const t = document.querySelector(href);
+    if (t) {
+      e.preventDefault();
+      const top = t.getBoundingClientRect().top + window.scrollY - 60;
+      window.scrollTo({ top, behavior: 'smooth' });
+    }
   });
 });
+
+// ===== BACK TO TOP — DROP TOWER =====
+const btt = document.getElementById('backToTop');
+if (btt) {
+  window.addEventListener('scroll', () => {
+    btt.classList.toggle('visible', window.scrollY > 500);
+  });
+  btt.addEventListener('click', () => {
+    btt.classList.add('launching');
+    setTimeout(() => btt.classList.remove('launching'), 700);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+}
