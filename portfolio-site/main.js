@@ -150,6 +150,10 @@ function buildFerris() {
   const wg  = document.getElementById('fw-wheel');
   if (!svg || !wg) return;
 
+  // FIX: Force the main wheel group to pivot exactly around the center hub axle
+  wg.style.transformBox = 'view-box';
+  wg.style.transformOrigin = `${CX}px ${CY}px`;
+
   projectAngles.forEach((a, i) => {
     const pos = polar(a, R);
     const p = PROJECTS[i];
@@ -157,7 +161,7 @@ function buildFerris() {
     const attachY = pos.y;
 
     // spoke
-    const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+    const line = document.createElementNS('http://w3.org', 'line');
     line.setAttribute('x1', CX); line.setAttribute('y1', CY);
     line.setAttribute('x2', attachX); line.setAttribute('y2', attachY);
     line.setAttribute('stroke', 'rgba(188,216,236,0.5)');
@@ -165,23 +169,25 @@ function buildFerris() {
     wg.appendChild(line);
 
     // OUTER group handles counter-rotation (gravity fix)
-    const outer = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+    const outer = document.createElementNS('http://w3.org', 'g');
     outer.setAttribute('class', 'gondola-outer');
     outer.setAttribute('data-index', i);
     outer.dataset.cx = attachX;
     outer.dataset.cy = attachY;
-    outer.style.transformBox = 'fill-box';
-    outer.style.transformOrigin = '50% 0%';
+    
+    // FIX: Explicitly lock the counter-rotation pivot point to the specific spoke tip attachment coordinate
+    outer.style.transformBox = 'view-box';
+    outer.style.transformOrigin = `${attachX}px ${attachY}px`;
 
     // INNER group handles sway animation
-    const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+    const g = document.createElementNS('http://w3.org', 'g');
     g.setAttribute('class', 'gondola-group');
     g.setAttribute('data-index', i);
-    g.style.transformBox = 'fill-box';
-    g.style.transformOrigin = '50% 0%';
+    g.style.transformBox = 'view-box';
+    g.style.transformOrigin = `${attachX}px ${attachY}px`;
 
     // cord
-    const cord = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+    const cord = document.createElementNS('http://w3.org', 'line');
     cord.setAttribute('x1', attachX); cord.setAttribute('y1', attachY);
     cord.setAttribute('x2', attachX); cord.setAttribute('y2', attachY + 20);
     cord.setAttribute('stroke', 'rgba(188,216,236,.65)');
@@ -189,7 +195,7 @@ function buildFerris() {
     g.appendChild(cord);
 
     // cart
-    const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+    const rect = document.createElementNS('http://w3.org', 'rect');
     rect.setAttribute('class', 'gondola-rect');
     rect.setAttribute('x', attachX - GONDOLA_W / 2);
     rect.setAttribute('y', attachY + 20);
@@ -202,7 +208,7 @@ function buildFerris() {
     g.appendChild(rect);
 
     // emoji
-    const emoji = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+    const emoji = document.createElementNS('http://w3.org', 'text');
     emoji.setAttribute('x', attachX);
     emoji.setAttribute('y', attachY + 20 + Math.round(GONDOLA_H * 0.5));
     emoji.setAttribute('text-anchor', 'middle');
@@ -212,7 +218,7 @@ function buildFerris() {
     g.appendChild(emoji);
 
     // number label
-    const lbl = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+    const lbl = document.createElementNS('http://w3.org', 'text');
     lbl.setAttribute('x', attachX);
     lbl.setAttribute('y', attachY + 20 + GONDOLA_H - 8);
     lbl.setAttribute('text-anchor', 'middle');
@@ -241,15 +247,7 @@ let hasSplit = false;
 let currentRotation = 0;
 let targetRotation = 0;
 let isUserClicking = false; 
-const easeFactor = 0.07; // Lower value = ultra smooth, floaty physics
-
-function swayGondolas() {
-  document.querySelectorAll('.gondola-group').forEach(g => {
-    g.classList.remove('gondola-sway');
-    void g.offsetWidth; // Force element restyle layout cycle
-    g.classList.add('gondola-sway');
-  });
-}
+const easeFactor = 0.08; 
 
 function updateActiveStates(index) {
   if (index === currentProject) return;
@@ -271,23 +269,18 @@ function goToProject(index) {
   const angle = projectAngles[index];
   targetRotation = -(angle - 90);
 
-  // Turn on CSS transitions temporarily for explicit layout clicks
+  // Smooth CSS snaps for manual navigation clicks
   wheelGroup.style.transition = 'transform 0.85s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+  wheelGroup.style.transform = `rotate(${targetRotation}deg)`;
+  
   document.querySelectorAll('.gondola-outer').forEach(outer => {
     outer.style.transition = 'transform 0.85s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+    outer.style.transform = `rotate(${-targetRotation}deg)`;
   });
 
   currentRotation = targetRotation;
-  wheelGroup.style.transform = `rotate(${currentRotation}deg)`;
-  
-  document.querySelectorAll('.gondola-outer').forEach(outer => {
-    outer.style.transform = `rotate(${-currentRotation}deg)`;
-  });
-
   updateActiveStates(index);
-  setTimeout(swayGondolas, 400);
 
-  // Release lock so the loop engine can take over smooth scrolling again
   setTimeout(() => {
     isUserClicking = false;
   }, 850);
@@ -328,7 +321,6 @@ window.addEventListener('scroll', () => {
   const scrolled = -rect.top;
   const total = ferrisSection.offsetHeight - window.innerHeight;
 
-  // Split-screen activation handling
   if (scrolled > window.innerHeight * 0.25 && !hasSplit) {
     hasSplit = true;
     ferrisInner.classList.add('split');
@@ -339,11 +331,8 @@ window.addEventListener('scroll', () => {
     currentProject = -1;
   }
 
-  // Live calculation mapping scroll track to target angles
   if (hasSplit && total > 0) {
     const progress = Math.max(0, Math.min((scrolled - window.innerHeight * 0.25) / (total * 0.85), 1));
-    
-    // Map full travel path across 360-degree rotation space
     targetRotation = progress * -360; 
     
     const idx = Math.min(Math.floor(progress * PROJECTS.length), PROJECTS.length - 1);
@@ -354,10 +343,8 @@ window.addEventListener('scroll', () => {
 // Continuous 60FPS Inertia Loop Pipeline
 function renderSmoothLoop() {
   if (!isUserClicking && hasSplit) {
-    // Clear out transition properties so they don't fight frame rendering ticks
+    // Clear out transition bottlenecks during active scroll loops
     wheelGroup.style.transition = 'none';
-    
-    // Linear Interpolation: current + (target - current) * factor
     currentRotation += (targetRotation - currentRotation) * easeFactor;
     
     wheelGroup.style.transform = `rotate(${currentRotation}deg)`;
@@ -397,6 +384,7 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
     }
   });
 });
+
 
 
 // ===== BACK TO TOP — DROP TOWER =====
