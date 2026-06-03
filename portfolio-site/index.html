@@ -13,11 +13,11 @@
 </head>
 <body>
 
+<a href="#projects" class="skip-link">Skip to main content</a>
+
 <div class="cursor"></div>
 <div class="scroll-progress" style="width:0%"></div>
 
-<!-- Nav star fly animation -->
-<div class="nav-star-fly" aria-hidden="true">✦</div>
 
 <!-- NAV -->
 <nav>
@@ -48,7 +48,7 @@
       <h1>I am <em>Smera Shetty</em>, a UX designer rooted in psychology.</h1>
     </div>
     <p class="gate-subtitle">UX research and design across government, startups, and non-profits — with a psychology lens.</p>
-    <a href="#contact" class="btn-ticket">🎡 Let's work together</a>
+    <a href="#contact" class="btn-ticket" aria-label="Let's work together — jump to contact section">🎡 Let's work together</a>
   </div>
 
   <div class="scroll-hint">
@@ -61,8 +61,7 @@
 
 <!-- ===== WHEEL OF PROJECTS ===== -->
 <div class="projects-header" id="projects">
-  <div class="section-label">🎡 Wheel of Projects</div>
-  <h2 class="section-title">Case Studies</h2>
+  <h2 class="section-label projects-label">🎡 Wheel of Projects</h2>
   <p>Scroll to spin the wheel — or click any cart to jump in.</p>
 </div>
 
@@ -73,7 +72,8 @@
       <!-- Wheel -->
       <div class="ferris-wheel-side">
         <div class="ferris-svg-wrap">
-          <svg id="ferris-svg" viewBox="0 0 540 520" xmlns="http://www.w3.org/2000/svg">
+          <svg id="ferris-svg" viewBox="0 0 540 630" role="img" aria-label="Ferris wheel with 4 project gondolas" xmlns="http://www.w3.org/2000/svg">
+            <title>Wheel of Projects — click a gondola to view a case study</title>
             <circle cx="270" cy="270" r="225" fill="rgba(188,216,236,0.04)"/>
             <circle cx="270" cy="270" r="210" fill="none" stroke="rgba(188,216,236,0.22)" stroke-width="2"/>
             <circle cx="270" cy="270" r="210" fill="none" stroke="rgba(188,216,236,0.45)" stroke-width="2" stroke-dasharray="10 7"/>
@@ -83,10 +83,10 @@
             <circle cx="270" cy="270" r="26" fill="#1d3f5e" stroke="rgba(188,216,236,0.7)" stroke-width="2.5"/>
             <text x="270" y="277" text-anchor="middle" font-size="18" fill="#BCD8EC">✦</text>
             <!-- Legs -->
-            <line x1="270" y1="480" x2="170" y2="515" stroke="rgba(188,216,236,0.5)" stroke-width="4" stroke-linecap="round"/>
-            <line x1="270" y1="480" x2="370" y2="515" stroke="rgba(188,216,236,0.5)" stroke-width="4" stroke-linecap="round"/>
-            <rect x="130" y="513" width="82" height="7" rx="3.5" fill="rgba(188,216,236,0.35)"/>
-            <rect x="328" y="513" width="82" height="7" rx="3.5" fill="rgba(188,216,236,0.35)"/>
+            <line x1="270" y1="480" x2="120" y2="534" stroke="rgba(188,216,236,0.5)" stroke-width="4" stroke-linecap="round"/>
+            <line x1="270" y1="480" x2="420" y2="534" stroke="rgba(188,216,236,0.5)" stroke-width="4" stroke-linecap="round"/>
+            <rect x="79"  y="532" width="82" height="8" rx="4" fill="rgba(188,216,236,0.35)"/>
+            <rect x="379" y="532" width="82" height="8" rx="4" fill="rgba(188,216,236,0.35)"/>
           </svg>
         </div>
       </div>
@@ -331,10 +331,12 @@
   </div>
 </footer>
 
-<!-- Back to Top -->
-<button class="back-to-top" id="backToTop" aria-label="Back to top">
-  <div class="tower-track">
-    <div class="tower-car"></div>
+<!-- Back to Top Drop Tower -->
+<button class="back-to-top" id="backToTop" aria-label="Scroll back to top">
+  <div class="btt-inner">
+    <div class="tower-cap"></div>
+    <div class="tower-track"></div>
+    <div class="tower-car">↑</div>
   </div>
   <div class="tower-label">Top</div>
 </button>
