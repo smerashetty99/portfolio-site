@@ -337,17 +337,18 @@ nav {
 /* gondola sway animation */
 @keyframes gondolaSway {
   0%   { transform: rotate(0deg); }
-  12%  { transform: rotate(10deg); }
-  28%  { transform: rotate(-7deg); }
-  42%  { transform: rotate(4.5deg); }
-  56%  { transform: rotate(-2.5deg); }
-  68%  { transform: rotate(1.2deg); }
-  80%  { transform: rotate(-0.5deg); }
-  100% { transform: rotate(0deg); }
+  20%  { transform: rotate(10deg); } /* Maximum initial tilt */
+  100% { transform: rotate(0deg); }  /* Naturally settles to rest */
 }
+
 .gondola-sway {
-  animation: gondolaSway 1.4s cubic-bezier(.25,.46,.45,.94) forwards;
+  /* Uses a custom curve that overshoots back and forth automatically */
+  animation: gondolaSway 2.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+  
+  /* CRITICAL: Keeps the rope or cable pinned to its physical attachment point */
+  transform-origin: top center; 
 }
+
 
 /* ===== MARKETING DESIGNS ===== */
 #marketing { background: var(--white); padding: 80px 48px; }
