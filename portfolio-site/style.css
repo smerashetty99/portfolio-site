@@ -243,10 +243,19 @@ nav {
 #ferris-section { background: var(--cream); min-height: 600vh; position: relative; }
 
 .ferris-sticky {
-  position: sticky; top: 60px;
-  height: calc(100vh - 60px);
-  display: flex; align-items: center; justify-content: center; overflow: hidden;
+  position: sticky; 
+  top: 60px;
+  /* CHANGE: Allow the container to grow naturally if content runs out of space */
+  min-height: calc(100vh - 60px);
+  height: auto;
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+  /* CHANGE: Remove hidden overflow so overflowing card elements remain visible */
+  overflow: visible;
+  padding: 40px 0; /* Add safety breathing room for small laptops */
 }
+
 .ferris-inner {
   display: flex; align-items: center; width: 100%; height: 100%;
   transition: all .9s cubic-bezier(.25,.46,.45,.94);
@@ -282,10 +291,14 @@ nav {
 
 /* preview card — horizontal rectangle, bigger */
 .preview-card {
-  background: white; border-radius: 22px;
+  background: white; 
+  border-radius: 22px;
   box-shadow: 0 20px 70px rgba(29,63,94,.1);
-  overflow: hidden; border: 1.5px solid rgba(188,216,236,.4);
-  opacity: 0; transform: translateY(20px);
+  /* CHANGE: Switch from hidden to visible so the bottom box-shadows don't clip */
+  overflow: visible; 
+  border: 1.5px solid rgba(188,216,236,.4);
+  opacity: 0; 
+  transform: translateY(20px);
   transition: opacity .4s ease, transform .4s ease;
 }
 .preview-card.visible { opacity: 1; transform: translateY(0); }
@@ -345,9 +358,13 @@ nav {
   /* Uses a custom curve that overshoots back and forth automatically */
   animation: gondolaSway 2.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
   
-  /* CRITICAL: Keeps the rope or cable pinned to its physical attachment point */
-  transform-origin: top center; 
+  /* 1. FORCES THE BROWSER TO USE THE GONDOLA'S OWN BOUNDING BOX */
+  transform-box: fill-box;
+  
+  /* 2. PIN TO THE TOP-CENTER OF THAT SPECIFIC GONDOLA G-ELEMENT */
+  transform-origin: 50% 0%; 
 }
+
 
 
 /* ===== MARKETING DESIGNS ===== */
