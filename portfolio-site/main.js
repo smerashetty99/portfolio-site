@@ -150,10 +150,6 @@ function buildFerris() {
   const wg  = document.getElementById('fw-wheel');
   if (!svg || !wg) return;
 
-  // FIX: Force the main wheel group to pivot exactly around the center hub axle
-  wg.style.transformBox = 'view-box';
-  wg.style.transformOrigin = `${CX}px ${CY}px`;
-
   projectAngles.forEach((a, i) => {
     const pos = polar(a, R);
     const p = PROJECTS[i];
@@ -161,7 +157,7 @@ function buildFerris() {
     const attachY = pos.y;
 
     // spoke
-    const line = document.createElementNS('http://w3.org', 'line');
+    const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
     line.setAttribute('x1', CX); line.setAttribute('y1', CY);
     line.setAttribute('x2', attachX); line.setAttribute('y2', attachY);
     line.setAttribute('stroke', 'rgba(188,216,236,0.5)');
@@ -169,25 +165,21 @@ function buildFerris() {
     wg.appendChild(line);
 
     // OUTER group handles counter-rotation (gravity fix)
-    const outer = document.createElementNS('http://w3.org', 'g');
+    const outer = document.createElementNS('http://www.w3.org/2000/svg', 'g');
     outer.setAttribute('class', 'gondola-outer');
     outer.setAttribute('data-index', i);
     outer.dataset.cx = attachX;
     outer.dataset.cy = attachY;
-    
-    // FIX: Explicitly lock the counter-rotation pivot point to the specific spoke tip attachment coordinate
     outer.style.transformBox = 'view-box';
-    outer.style.transformOrigin = `${attachX}px ${attachY}px`;
+    outer.style.transformOrigin = attachX + 'px ' + attachY + 'px';
 
     // INNER group handles sway animation
-    const g = document.createElementNS('http://w3.org', 'g');
+    const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
     g.setAttribute('class', 'gondola-group');
     g.setAttribute('data-index', i);
-    g.style.transformBox = 'view-box';
-    g.style.transformOrigin = `${attachX}px ${attachY}px`;
 
     // cord
-    const cord = document.createElementNS('http://w3.org', 'line');
+    const cord = document.createElementNS('http://www.w3.org/2000/svg', 'line');
     cord.setAttribute('x1', attachX); cord.setAttribute('y1', attachY);
     cord.setAttribute('x2', attachX); cord.setAttribute('y2', attachY + 20);
     cord.setAttribute('stroke', 'rgba(188,216,236,.65)');
@@ -195,7 +187,7 @@ function buildFerris() {
     g.appendChild(cord);
 
     // cart
-    const rect = document.createElementNS('http://w3.org', 'rect');
+    const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
     rect.setAttribute('class', 'gondola-rect');
     rect.setAttribute('x', attachX - GONDOLA_W / 2);
     rect.setAttribute('y', attachY + 20);
@@ -208,7 +200,7 @@ function buildFerris() {
     g.appendChild(rect);
 
     // emoji
-    const emoji = document.createElementNS('http://w3.org', 'text');
+    const emoji = document.createElementNS('http://www.w3.org/2000/svg', 'text');
     emoji.setAttribute('x', attachX);
     emoji.setAttribute('y', attachY + 20 + Math.round(GONDOLA_H * 0.5));
     emoji.setAttribute('text-anchor', 'middle');
@@ -218,7 +210,7 @@ function buildFerris() {
     g.appendChild(emoji);
 
     // number label
-    const lbl = document.createElementNS('http://w3.org', 'text');
+    const lbl = document.createElementNS('http://www.w3.org/2000/svg', 'text');
     lbl.setAttribute('x', attachX);
     lbl.setAttribute('y', attachY + 20 + GONDOLA_H - 8);
     lbl.setAttribute('text-anchor', 'middle');
@@ -234,7 +226,7 @@ function buildFerris() {
 }
 buildFerris();
 
-// ===== FERRIS INTERACTION (SMOOTH INERTIA ENGINE) =====
+// ===== FERRIS INTERACTION =====
 const ferrisSection = document.getElementById('ferris-section');
 const ferrisInner   = document.querySelector('.ferris-inner');
 const wheelGroup    = document.getElementById('fw-wheel');
@@ -242,16 +234,43 @@ const previewCard   = document.querySelector('.preview-card');
 
 let currentProject = -1;
 let hasSplit = false;
-
-// Inertia tracking parameters
 let currentRotation = 0;
-let targetRotation = 0;
-let isUserClicking = false; 
-const easeFactor = 0.08; 
 
-function updateActiveStates(index) {
+function applyGondolaCounterRotation(rotation) {
+  document.querySelectorAll('.gondola-outer').forEach(outer => {
+    const cx = parseFloat(outer.dataset.cx);
+    const cy = parseFloat(outer.dataset.cy);
+    outer.style.transformBox = 'view-box';
+    outer.style.transformOrigin = cx + 'px ' + cy + 'px';
+    outer.style.transition = 'transform 0.85s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+    outer.style.transform = 'rotate(' + (-rotation) + 'deg)';
+  });
+}
+
+function swayGondolas() {
+  document.querySelectorAll('.gondola-group').forEach(g => {
+    g.classList.remove('gondola-sway');
+    void g.offsetWidth;
+    g.classList.add('gondola-sway');
+    setTimeout(() => g.classList.remove('gondola-sway'), 1500);
+  });
+}
+
+function goToProject(index) {
   if (index === currentProject) return;
   currentProject = index;
+
+  // Bring selected gondola to the right (90deg = 3 o'clock)
+  const angle = projectAngles[index];
+  const rotation = -(angle - 90);
+  currentRotation = rotation;
+
+  wheelGroup.style.transition = 'transform 0.85s cubic-bezier(0.25,0.46,0.45,0.94)';
+  wheelGroup.style.transform = 'rotate(' + rotation + 'deg)';
+
+  applyGondolaCounterRotation(rotation);
+
+  setTimeout(swayGondolas, 900);
 
   document.querySelectorAll('.gondola-outer').forEach((outer, i) => {
     outer.classList.toggle('active-outer', i === index);
@@ -261,29 +280,6 @@ function updateActiveStates(index) {
   });
 
   updatePreview(index);
-}
-
-function goToProject(index) {
-  isUserClicking = true;
-  
-  const angle = projectAngles[index];
-  targetRotation = -(angle - 90);
-
-  // Smooth CSS snaps for manual navigation clicks
-  wheelGroup.style.transition = 'transform 0.85s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
-  wheelGroup.style.transform = `rotate(${targetRotation}deg)`;
-  
-  document.querySelectorAll('.gondola-outer').forEach(outer => {
-    outer.style.transition = 'transform 0.85s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
-    outer.style.transform = `rotate(${-targetRotation}deg)`;
-  });
-
-  currentRotation = targetRotation;
-  updateActiveStates(index);
-
-  setTimeout(() => {
-    isUserClicking = false;
-  }, 850);
 }
 
 function buildPreviewHTML(p) {
@@ -300,12 +296,12 @@ function buildPreviewHTML(p) {
     '</div></div>';
 }
 
-if (previewCard && typeof PROJECTS !== 'undefined' && PROJECTS[0]) {
+if (previewCard) {
   previewCard.innerHTML = buildPreviewHTML(PROJECTS[0]);
 }
 
 function updatePreview(index) {
-  if (!previewCard || typeof PROJECTS === 'undefined' || !PROJECTS[index]) return;
+  if (!previewCard) return;
   previewCard.classList.remove('visible');
   setTimeout(() => {
     previewCard.innerHTML = buildPreviewHTML(PROJECTS[index]);
@@ -313,10 +309,8 @@ function updatePreview(index) {
   }, 130);
 }
 
-// Global Scroll Processing
 window.addEventListener('scroll', () => {
-  if (!ferrisSection || !ferrisInner || isUserClicking) return;
-  
+  if (!ferrisSection || !ferrisInner) return;
   const rect = ferrisSection.getBoundingClientRect();
   const scrolled = -rect.top;
   const total = ferrisSection.offsetHeight - window.innerHeight;
@@ -324,7 +318,7 @@ window.addEventListener('scroll', () => {
   if (scrolled > window.innerHeight * 0.25 && !hasSplit) {
     hasSplit = true;
     ferrisInner.classList.add('split');
-    updateActiveStates(0);
+    setTimeout(() => goToProject(0), 250);
   } else if (scrolled <= window.innerHeight * 0.15 && hasSplit) {
     hasSplit = false;
     ferrisInner.classList.remove('split');
@@ -333,32 +327,12 @@ window.addEventListener('scroll', () => {
 
   if (hasSplit && total > 0) {
     const progress = Math.max(0, Math.min((scrolled - window.innerHeight * 0.25) / (total * 0.85), 1));
-    targetRotation = progress * -360; 
-    
     const idx = Math.min(Math.floor(progress * PROJECTS.length), PROJECTS.length - 1);
-    updateActiveStates(idx);
+    goToProject(idx);
   }
-}, { passive: true });
+});
 
-// Continuous 60FPS Inertia Loop Pipeline
-function renderSmoothLoop() {
-  if (!isUserClicking && hasSplit) {
-    // Clear out transition bottlenecks during active scroll loops
-    wheelGroup.style.transition = 'none';
-    currentRotation += (targetRotation - currentRotation) * easeFactor;
-    
-    wheelGroup.style.transform = `rotate(${currentRotation}deg)`;
-    
-    document.querySelectorAll('.gondola-outer').forEach(outer => {
-      outer.style.transition = 'none';
-      outer.style.transform = `rotate(${-currentRotation}deg)`;
-    });
-  }
-  requestAnimationFrame(renderSmoothLoop);
-}
-requestAnimationFrame(renderSmoothLoop);
-
-// Gondola click events
+// Gondola click
 document.getElementById('ferris-svg')?.addEventListener('click', e => {
   const g = e.target.closest('.gondola-group');
   if (!g) return;
@@ -372,7 +346,7 @@ document.getElementById('ferris-svg')?.addEventListener('click', e => {
   }
 });
 
-// ===== SMOOTH SCROLL FOR LINKS =====
+// ===== SMOOTH SCROLL (with nav offset, fixed for #contact) =====
 document.querySelectorAll('a[href^="#"]').forEach(a => {
   a.addEventListener('click', e => {
     const href = a.getAttribute('href');
@@ -384,8 +358,6 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
     }
   });
 });
-
-
 
 // ===== BACK TO TOP — DROP TOWER =====
 const btt = document.getElementById('backToTop');
