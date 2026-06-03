@@ -240,7 +240,13 @@ nav {
 .projects-header p { color: var(--text-light); font-size: 0.9rem; margin-top: 8px; }
 
 /* ===== FERRIS SECTION ===== */
-#ferris-section { background: var(--cream); min-height: 600vh; position: relative; }
+#ferris-section {
+  background: var(--cream);
+  min-height: 600vh;
+  position: relative;
+  /* Forces a separate compositing layer for smooth rendering */
+  will-change: transform; 
+}
 
 .ferris-sticky {
   position: sticky; 
@@ -343,7 +349,12 @@ nav {
 .ferris-inner.split .ferris-hint { opacity: 0; pointer-events: none; }
 
 /* gondola states */
-.gondola-group { cursor: pointer; }
+.gondola-group {
+  cursor: pointer;
+  /* Centers the transformation origin to the true geometric pivot point of each card */
+  transform-box: fill-box;
+  transform-origin: 50% 50%;
+}
 .gondola-group.active .gondola-rect { stroke-width: 3; filter: brightness(1.05); }
 .gondola-group.active { filter: drop-shadow(0 6px 16px rgba(255,203,225,.6)); }
 
@@ -355,16 +366,12 @@ nav {
 }
 
 .gondola-sway {
-  /* Uses a custom curve that overshoots back and forth automatically */
-  animation: gondolaSway 2.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
-  
-  /* 1. FORCES THE BROWSER TO USE THE GONDOLA'S OWN BOUNDING BOX */
+  /* Rotates the cards the exact opposite way so they stay upright */
+  transform: rotate(calc(var(--scroll-rotation, 0) * -1deg));
   transform-box: fill-box;
-  
-  /* 2. PIN TO THE TOP-CENTER OF THAT SPECIFIC GONDOLA G-ELEMENT */
-  transform-origin: 50% 0%; 
+  transform-origin: 50% 0%; /* Pins sway action to top of the card */
+  will-change: transform;
 }
-
 
 
 /* ===== MARKETING DESIGNS ===== */
