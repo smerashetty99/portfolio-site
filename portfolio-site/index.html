@@ -71,22 +71,26 @@
       <!-- Wheel -->
       <div class="ferris-wheel-side">
         <div class="ferris-svg-wrap">
-          <svg id="ferris-svg" viewBox="0 0 540 520" xmlns="http://www.w3.org/2000/svg">
+          <!-- FIX: Expanded height from 520 to 560 to prevent the bottom card from clipping -->
+          <svg id="ferris-svg" viewBox="0 0 540 560" xmlns="http://w3.org">
             <!-- Background glow -->
             <circle cx="270" cy="270" r="225" fill="rgba(188,216,236,0.04)"/>
             <!-- Outer rim -->
             <circle cx="270" cy="270" r="210" fill="none" stroke="rgba(188,216,236,0.25)" stroke-width="2"/>
             <circle cx="270" cy="270" r="210" fill="none" stroke="rgba(188,216,236,0.5)" stroke-width="2.5" stroke-dasharray="10 7"/>
+            
             <!-- Rotating group -->
-            <g id="fw-wheel" style="transform-origin:270px 270px; transition:transform .85s cubic-bezier(.25,.46,.45,.94)">
+            <!-- FIX: Removed inline CSS transitions to allow smooth, uninterrupted JS animation -->
+            <g id="fw-wheel">
               <!-- spokes & gondolas injected by JS -->
             </g>
+            
             <!-- Hub -->
             <circle cx="270" cy="270" r="26" fill="#1d3f5e" stroke="rgba(188,216,236,0.7)" stroke-width="2.5"/>
             <text x="270" y="277" text-anchor="middle" font-size="18" fill="#BCD8EC">✦</text>
             <!-- Legs -->
-            <line x1="270" y1="480" x2="170" y2="515" stroke="rgba(188,216,236,0.5)" stroke-width="4" stroke-linecap="round"/>
-            <line x1="270" y1="480" x2="370" y2="515" stroke="rgba(188,216,236,0.5)" stroke-width="4" stroke-linecap="round"/>
+            <line x1="270" y1="270" x2="170" y2="515" stroke="rgba(188,216,236,0.5)" stroke-width="4" stroke-linecap="round"/>
+            <line x1="270" y1="270" x2="370" y2="515" stroke="rgba(188,216,236,0.5)" stroke-width="4" stroke-linecap="round"/>
             <rect x="130" y="513" width="82" height="7" rx="3.5" fill="rgba(188,216,236,0.35)"/>
             <rect x="328" y="513" width="82" height="7" rx="3.5" fill="rgba(188,216,236,0.35)"/>
           </svg>
@@ -101,7 +105,6 @@
       <div class="ferris-hint">↓ Scroll to explore</div>
     </div>
   </div>
-  <div style="height:500vh;pointer-events:none;"></div>
 </div>
 
 <!-- scallop -->
