@@ -136,7 +136,8 @@ const PROJECTS = [
     tags: ['App Design', 'UX Research', 'Prototyping', 'Community'],
     color: '#BCD8EC',
     link: 'gooseconnect.html',
-    thumb: 'thumb-goose-2.jpg'
+    thumb: 'thumb-goose-app.jpg',   // Save the attached app collage image as thumb-goose-app.jpg
+    thumbContain: true              // Show full image without cropping
   },
 ];
 
@@ -209,10 +210,10 @@ function buildFerris() {
     // Large centred emoji logo
     const emojiEl = document.createElementNS('http://www.w3.org/2000/svg','text');
     emojiEl.setAttribute('x', attachX);
-    emojiEl.setAttribute('y', cartCY + 4);   // slightly below centre, visual balance
+    emojiEl.setAttribute('y', cartCY + 2);   // slightly below centre, visual balance
     emojiEl.setAttribute('text-anchor','middle');
     emojiEl.setAttribute('dominant-baseline','middle');
-    emojiEl.setAttribute('font-size','34');
+    emojiEl.setAttribute('font-size','42');
     emojiEl.textContent = p.emoji;
     g.appendChild(emojiEl);
 
@@ -262,13 +263,14 @@ function swayGondolas() {
 }
 
 function buildPreviewHTML(p) {
+  const containClass = p.thumbContain ? ' preview-thumb--contain' : '';
   const thumbHtml = p.thumb
-    ? `<img src="${p.thumb}" alt="${p.title} design screenshot" class="preview-thumb" loading="lazy"/>`
+    ? `<img src="${p.thumb}" alt="${p.title} design screenshot" class="preview-thumb${containClass}" loading="lazy"/>`
     : '';
   return `<div class="preview-card-inner">
     <div class="preview-img preview-img-wrap" style="background:${p.color}">
       ${thumbHtml}
-      <span class="preview-emoji-fallback" style="${p.thumb?'opacity:0.15':''}; font-size:6rem">${p.emoji}</span>
+      <span class="preview-emoji-fallback" style="${p.thumb?'opacity:0.12':''}; font-size:6rem">${p.emoji}</span>
     </div>
     <div class="preview-body">
       <div class="preview-num">${p.num}</div>

@@ -75,16 +75,16 @@
             <circle cx="270" cy="270" r="225" fill="rgba(188,216,236,0.04)"/>
             <circle cx="270" cy="270" r="210" fill="none" stroke="rgba(188,216,236,0.22)" stroke-width="2"/>
             <circle cx="270" cy="270" r="210" fill="none" stroke="rgba(188,216,236,0.45)" stroke-width="2" stroke-dasharray="10 7"/>
-            <!-- Rotating group (spokes + gondolas injected by JS) -->
-            <g id="fw-wheel" style="transform-origin:270px 270px; transition:transform .85s cubic-bezier(.25,.46,.45,.94)"></g>
-            <!-- Hub (rendered above the wheel group) -->
-            <circle cx="270" cy="270" r="26" fill="#1d3f5e" stroke="rgba(188,216,236,0.7)" stroke-width="2.5"/>
-            <text x="270" y="277" text-anchor="middle" font-size="18" fill="#BCD8EC">✦</text>
-            <!-- Legs (span reduced 50%, height unchanged) -->
+              <!-- Legs rendered FIRST so gondolas paint on top -->
             <line x1="270" y1="480" x2="124" y2="585" stroke="rgba(188,216,236,0.5)" stroke-width="4" stroke-linecap="round"/>
             <line x1="270" y1="480" x2="416" y2="585" stroke="rgba(188,216,236,0.5)" stroke-width="4" stroke-linecap="round"/>
             <rect x="83" y="583" width="82" height="8" rx="4" fill="rgba(188,216,236,0.35)"/>
             <rect x="375" y="583" width="82" height="8" rx="4" fill="rgba(188,216,236,0.35)"/>
+            <!-- Rotating group (spokes + gondolas — in front of legs) -->
+            <g id="fw-wheel" style="transform-origin:270px 270px; transition:transform .85s cubic-bezier(.25,.46,.45,.94)"></g>
+            <!-- Hub (rendered above everything) -->
+            <circle cx="270" cy="270" r="26" fill="#1d3f5e" stroke="rgba(188,216,236,0.7)" stroke-width="2.5"/>
+            <text x="270" y="277" text-anchor="middle" font-size="18" fill="#BCD8EC">✦</text>
           </svg>
         </div>
       </div>
