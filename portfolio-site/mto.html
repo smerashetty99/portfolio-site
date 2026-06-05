@@ -59,26 +59,6 @@
 
 <main class="cs-body" id="main-content">
 
-  <!-- Project Assets -->
-  <div class="cs-section fade-up cs-thumbs-section">
-    <h2>Project Assets</h2>
-    <div class="cs-thumb-grid" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-top:20px;">
-      <figure class="cs-thumb-fig">
-        <img src="thumb-mto-live.webp" loading="lazy" class="cs-thumb-img"
-             alt="Ontario government website page for the Occupational Exposure Registry showing the public landing page"/>
-      </figure>
-      <figure class="cs-thumb-fig">
-        <img src="thumb-mto-2.webp" loading="lazy" class="cs-thumb-img"
-             alt="OER self-tracker prototype — terms of use screen showing the form interface tested in usability sessions"/>
-      </figure>
-      <figure class="cs-thumb-fig">
-        <img src="thumb-mto.webp" loading="lazy" class="cs-thumb-img"
-             alt="OER Think.AI project research outline document showing study scope and research objectives"/>
-      </figure>
-    </div>
-    <figcaption class="cs-thumb-cap">Live OER page · self-tracker prototype screens · project research outline</figcaption>
-  </div>
-
   <!-- Overview -->
   <div class="cs-section fade-up">
     <h2>Overview</h2>
@@ -107,6 +87,19 @@
         <h3>The Approach</h3>
         <p>Three moderated usability sessions with participants from diverse backgrounds. Human note-taking captured nuance and edge cases. AI tools assisted with transcription, theme clustering, and drafting artifact shells — then each output was validated against the raw session recordings. A time study measured exactly where AI added value and where human judgment was non-negotiable.</p>
       </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:28px;">
+      <figure class="cs-thumb-fig">
+        <img src="thumb-mto-live.webp" loading="lazy" class="cs-thumb-img"
+             alt="Ontario Occupational Exposure Registry Self-Tracker live website landing page showing the public-facing OER tool"/>
+        <figcaption class="cs-thumb-cap">Live OER Self-Tracker — the public-facing tool that workers use to log workplace exposures</figcaption>
+      </figure>
+      <figure class="cs-thumb-fig">
+        <img src="thumb-mto-3.webp" loading="lazy" class="cs-thumb-img"
+             alt="OER self-tracker prototype — Provide exposure details form showing the multi-section input screen tested in usability sessions"/>
+        <figcaption class="cs-thumb-cap">Prototype — the detailed "Provide exposure details" form tested across all three usability sessions</figcaption>
+      </figure>
     </div>
   </div>
 
@@ -184,12 +177,39 @@
     <h2>Think.AI — AI Integration in UX Research</h2>
     <p>Part B of the study was an independent research initiative I led: a structured evaluation of where AI tools genuinely help in a UX research workflow, and where human judgment remains non-negotiable.</p>
 
+    <figure class="cs-thumb-fig" style="margin:20px 0 28px;">
+      <img src="thumb-mto.webp" loading="lazy" class="cs-thumb-img"
+           alt="Think.AI Use Case 4 document — AI-assisted user research project scope and solution statement"/>
+      <figcaption class="cs-thumb-cap">Think.AI — Use Case #4: AI-assisted user research · project scope document</figcaption>
+    </figure>
+
     <div class="cs-highlight">
       <h3>Measured Time Savings</h3>
       <p>Manual research workflow: <strong style="color:var(--sky);">12h 1m total</strong> (review 6h 18m + synthesis 5h 43m). AI-assisted workflow: <strong style="color:var(--sky);">3h 37m total</strong> (transcription 2h 20m + synthesis 1h 17m). Overall reduction: <strong style="color:var(--sky);">~70%</strong> — with ~63% saved on review/transcription and ~78% on synthesis.</p>
     </div>
 
-    <p style="margin-top:24px;">Per-session savings: Participant 1 saved 2h 39m · Participant 2 saved 3h 27m · Participant 3 saved 2h 18m.</p>
+    <!-- Time savings bar chart -->
+    <div style="background:white;border-radius:16px;padding:28px 32px;margin:24px 0;border:1.5px solid rgba(188,216,236,.35);box-shadow:0 8px 28px rgba(29,63,94,.06);">
+      <p style="font-family:var(--font-mono);font-size:0.74rem;letter-spacing:.12em;color:var(--text-light);text-transform:uppercase;margin-bottom:20px;">Workflow time comparison</p>
+      <div style="margin-bottom:20px;">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px;">
+          <span style="font-size:0.88rem;font-weight:600;color:var(--text);">Manual workflow</span>
+          <span style="font-family:var(--font-mono);font-size:0.82rem;color:var(--text-mid);">12h 1m</span>
+        </div>
+        <div style="height:20px;background:var(--sky);border-radius:6px;width:100%;"></div>
+      </div>
+      <div style="margin-bottom:20px;">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px;">
+          <span style="font-size:0.88rem;font-weight:600;color:var(--text);">AI-assisted workflow</span>
+          <span style="font-family:var(--font-mono);font-size:0.82rem;color:var(--text-mid);">3h 37m</span>
+        </div>
+        <div style="height:20px;background:var(--green-soft);border-radius:6px;width:30%;"></div>
+      </div>
+      <p style="font-size:0.82rem;color:var(--text-mid);margin-top:16px;margin-bottom:0;">Per-session savings: <strong>P1 — 2h 39m</strong> &nbsp;·&nbsp; <strong>P2 — 3h 27m</strong> &nbsp;·&nbsp; <strong>P3 — 2h 18m</strong></p>
+      <p style="font-family:var(--font-mono);font-size:0.8rem;color:var(--sky-deeper);font-weight:700;margin-top:10px;margin-bottom:0;">~70% overall reduction in research workflow time</p>
+    </div>
+
+    <p style="margin-top:8px;">Savings breakdown: ~63% on review/transcription, ~78% on synthesis — but with the caveat that every AI output required human validation before use.</p>
 
     <div class="cs-two-col" style="margin-top:24px;">
       <div class="cs-card">
@@ -317,9 +337,9 @@
       <rect x="9" y="40" width="11" height="5" rx="2" fill="#fff" opacity="0.5"/>
       <rect x="23" y="40" width="11" height="5" rx="2" fill="#fff" opacity="0.5"/>
       <rect x="37" y="40" width="11" height="5" rx="2" fill="#fff" opacity="0.5"/>
-      <text x="14.5" y="47" text-anchor="middle" font-size="7" font-family="DM Mono,monospace" font-weight="700" fill="#1d3f5e">T</text>
-      <text x="28.5" y="47" text-anchor="middle" font-size="7" font-family="DM Mono,monospace" font-weight="700" fill="#1d3f5e">O</text>
-      <text x="42.5" y="47" text-anchor="middle" font-size="7" font-family="DM Mono,monospace" font-weight="700" fill="#1d3f5e">P</text>
+      <text x="14.5" y="47" text-anchor="middle" font-size="9" font-family="DM Mono,monospace" font-weight="700" fill="#1d3f5e" stroke="#1d3f5e" stroke-width="0.4" paint-order="stroke">T</text>
+      <text x="28.5" y="47" text-anchor="middle" font-size="9" font-family="DM Mono,monospace" font-weight="700" fill="#1d3f5e" stroke="#1d3f5e" stroke-width="0.4" paint-order="stroke">O</text>
+      <text x="42.5" y="47" text-anchor="middle" font-size="9" font-family="DM Mono,monospace" font-weight="700" fill="#1d3f5e" stroke="#1d3f5e" stroke-width="0.4" paint-order="stroke">P</text>
     </g>
   </svg>
 </button>

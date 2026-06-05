@@ -101,6 +101,7 @@ const PROJECTS = [
   {
     num: 'Case Study 01', emoji: '🏛️',
     title: 'Ontario Exposure Registry',
+    shortLabel: 'Ontario MTO',
     desc: 'AI-assisted usability research for a government self-tracker at Ontario MTO. Led 3 sessions, produced AI vs. manual time study (~70% efficiency gain), synthesized recommendations for the live platform.',
     tags: ['Government UX', 'Usability Testing', 'AI Research', 'Accessibility'],
     color: '#DCCCE8',
@@ -110,6 +111,7 @@ const PROJECTS = [
   {
     num: 'Case Study 02', emoji: '🌾',
     title: 'Kisan4U',
+    shortLabel: 'Kisan4U',
     desc: 'Redesigned an agricultural e-commerce platform for low-literacy farmers in a fast-paced startup. Strengthened CTAs, simplified navigation, and improved trust signals through user research and usability testing.',
     tags: ['E-Commerce UX', 'Accessibility', 'User Research', 'Figma'],
     color: '#D6E5BD',
@@ -119,6 +121,7 @@ const PROJECTS = [
   {
     num: 'Case Study 03', emoji: '🍫',
     title: "Willie's Chocolates",
+    shortLabel: "Willie's",
     desc: 'Designed a magical, nostalgic digital experience for a reimagined Wonka-style chocolate brand — live on the web. Brand storytelling, immersive UX, and a full e-commerce flow.',
     tags: ['Brand UX', 'Visual Design', 'E-Commerce', 'Live Site'],
     color: '#FFCBE1',
@@ -128,11 +131,12 @@ const PROJECTS = [
   {
     num: 'Case Study 04', emoji: '🦆',
     title: 'GooseConnect',
+    shortLabel: 'GooseConnect',
     desc: 'Designed a campus connection platform for University of Waterloo students. Led team research, journey mapping, and Figma prototyping to reduce social barriers and foster genuine friendships.',
     tags: ['App Design', 'UX Research', 'Prototyping', 'Community'],
     color: '#BCD8EC',
     link: 'gooseconnect.html',
-    thumb: 'thumb-goose-1.jpg'
+    thumb: 'thumb-goose-2.jpg'
   },
 ];
 
@@ -151,29 +155,12 @@ function buildFerris() {
   const wg  = document.getElementById('fw-wheel');
   if (!svg || !wg) return;
 
-  // Add clipPath defs for gondola images
-  let defs = svg.querySelector('defs');
-  if (!defs) {
-    defs = document.createElementNS('http://www.w3.org/2000/svg','defs');
-    svg.insertBefore(defs, svg.firstChild);
-  }
-
   projectAngles.forEach((a, i) => {
     const pos = polar(a, R);
     const p = PROJECTS[i];
     const attachX = pos.x, attachY = pos.y;
-
-    // clipPath for image
-    const clipPath = document.createElementNS('http://www.w3.org/2000/svg','clipPath');
-    clipPath.setAttribute('id','gondola-clip-' + i);
-    const clipRect = document.createElementNS('http://www.w3.org/2000/svg','rect');
-    clipRect.setAttribute('x', attachX - GONDOLA_W/2 + 3);
-    clipRect.setAttribute('y', attachY + 22);
-    clipRect.setAttribute('width', GONDOLA_W - 6);
-    clipRect.setAttribute('height', GONDOLA_H - 10);
-    clipRect.setAttribute('rx','10');
-    clipPath.appendChild(clipRect);
-    defs.appendChild(clipPath);
+    const cartTop = attachY + 20;
+    const cartCY  = cartTop + GONDOLA_H / 2; // vertical centre of cart
 
     // spoke
     const line = document.createElementNS('http://www.w3.org/2000/svg','line');
@@ -202,7 +189,7 @@ function buildFerris() {
     // cord
     const cord = document.createElementNS('http://www.w3.org/2000/svg','line');
     cord.setAttribute('x1',attachX); cord.setAttribute('y1',attachY);
-    cord.setAttribute('x2',attachX); cord.setAttribute('y2',attachY+20);
+    cord.setAttribute('x2',attachX); cord.setAttribute('y2',cartTop);
     cord.setAttribute('stroke','rgba(188,216,236,.65)'); cord.setAttribute('stroke-width','2');
     g.appendChild(cord);
 
@@ -210,7 +197,7 @@ function buildFerris() {
     const rect = document.createElementNS('http://www.w3.org/2000/svg','rect');
     rect.setAttribute('class','gondola-rect');
     rect.setAttribute('x', attachX - GONDOLA_W/2);
-    rect.setAttribute('y', attachY + 20);
+    rect.setAttribute('y', cartTop);
     rect.setAttribute('width', GONDOLA_W);
     rect.setAttribute('height', GONDOLA_H);
     rect.setAttribute('rx','14');
@@ -219,27 +206,28 @@ function buildFerris() {
     rect.setAttribute('stroke-width','2');
     g.appendChild(rect);
 
-    // project thumbnail image
-    if (p.thumb) {
-      const img = document.createElementNS('http://www.w3.org/2000/svg','image');
-      img.setAttribute('href', p.thumb);
-      img.setAttribute('x', attachX - GONDOLA_W/2 + 3);
-      img.setAttribute('y', attachY + 22);
-      img.setAttribute('width', GONDOLA_W - 6);
-      img.setAttribute('height', GONDOLA_H - 10);
-      img.setAttribute('preserveAspectRatio','xMidYMid slice');
-      img.setAttribute('clip-path','url(#gondola-clip-' + i + ')');
-      g.appendChild(img);
-    }
+    // Large centred emoji logo
+    const emojiEl = document.createElementNS('http://www.w3.org/2000/svg','text');
+    emojiEl.setAttribute('x', attachX);
+    emojiEl.setAttribute('y', cartCY + 4);   // slightly below centre, visual balance
+    emojiEl.setAttribute('text-anchor','middle');
+    emojiEl.setAttribute('dominant-baseline','middle');
+    emojiEl.setAttribute('font-size','34');
+    emojiEl.textContent = p.emoji;
+    g.appendChild(emojiEl);
 
-    // emoji overlay (small, bottom-right)
-    const emoji = document.createElementNS('http://www.w3.org/2000/svg','text');
-    emoji.setAttribute('x', attachX + GONDOLA_W/2 - 16);
-    emoji.setAttribute('y', attachY + 20 + GONDOLA_H - 8);
-    emoji.setAttribute('text-anchor','middle');
-    emoji.setAttribute('font-size','16');
-    emoji.textContent = p.emoji;
-    g.appendChild(emoji);
+    // Short project name label below emoji
+    const label = document.createElementNS('http://www.w3.org/2000/svg','text');
+    label.setAttribute('x', attachX);
+    label.setAttribute('y', cartTop + GONDOLA_H - 10);
+    label.setAttribute('text-anchor','middle');
+    label.setAttribute('dominant-baseline','auto');
+    label.setAttribute('font-size','9');
+    label.setAttribute('font-family','DM Sans, sans-serif');
+    label.setAttribute('font-weight','700');
+    label.setAttribute('fill','rgba(29,63,94,0.7)');
+    label.textContent = p.shortLabel;
+    g.appendChild(label);
 
     outer.appendChild(g);
     wg.appendChild(outer);
