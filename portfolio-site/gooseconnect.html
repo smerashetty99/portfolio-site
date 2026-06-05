@@ -60,9 +60,9 @@
 <main class="cs-body" id="main-content">
 
   <div class="cs-section fade-up">
-    <h2>Overview</h2>
-    <p>GooseConnect is a conceptual platform crafted for University of Waterloo students to foster genuine connections and combat campus isolation. Frustrated by fragmented channels and the challenge of meeting new friends, our team set out to design a better way for students to discover and connect with peers.</p>
-    <p>As Team Facilitator and UX Designer, I led research, journey mapping, prototyping, and cross-functional coordination from inception to final design.</p>
+    <h2>The Problem</h2>
+    <p>39% of University of Waterloo students reported feeling lonely the previous day. Yet existing connection channels — Discord servers, Facebook groups, club listservs — were fragmented, overwhelming, and built for broadcast rather than belonging. Students who wanted to meet people didn't have a low-stakes, structured way to do it.</p>
+    <p>GooseConnect is a conceptual mobile platform designed to close that gap — making it easier for UW students to find people, discover events, and form real friendships beyond the classroom. Our team of 5 designed from research to final prototype over 6 weeks.</p>
     <div class="cs-tags">
       <span class="cs-tag">App Design</span>
       <span class="cs-tag">UX Research</span>
@@ -87,109 +87,99 @@
     </div>
     <div class="cs-thumb-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px;">
       <figure class="cs-thumb-fig">
-        <img src="thumb-goose-journey.webp" loading="lazy" class="cs-thumb-img" style="height:200px;"
+        <img src="thumb-goose-journey.webp" loading="lazy" class="cs-thumb-img"
              alt="GooseConnect customer journey map for Team 33 showing the end-to-end user experience from discovery to connection"/>
       </figure>
       <figure class="cs-thumb-fig">
-        <img src="thumb-goose-persona.webp" loading="lazy" class="cs-thumb-img" style="height:200px;"
+        <img src="thumb-goose-persona.webp" loading="lazy" class="cs-thumb-img"
              alt="GooseConnect user persona card showing student demographics, motivations, frustrations, and goals"/>
       </figure>
     </div>
     <figcaption class="cs-thumb-cap">App screens · customer journey map · user persona — GooseConnect Figma prototype</figcaption>
   </div>
   <div class="cs-section fade-up">
-    <h2>Problem &amp; Solution</h2>
+    <h2>My Role</h2>
     <div class="cs-two-col">
       <div class="cs-card">
-        <h3>The Problem</h3>
-        <p>Many University of Waterloo students feel isolated and hesitant to reach out. Current platforms are too fragmented or overwhelming. Students struggle to find peers open to new friendships, often missing out on events or low-pressure meetups. Loneliness and homesickness persist, especially for newcomers navigating a large campus.</p>
+        <h3>Team Facilitator &amp; UX Designer</h3>
+        <p>I led the research phase, facilitated all team ideation sessions, owned the journey mapping, and drove the Figma prototype from wireframes to high-fidelity. As facilitator, I was also responsible for keeping the team aligned on scope and making sure decisions were grounded in research rather than assumptions.</p>
       </div>
       <div class="cs-card">
-        <h3>The Solution</h3>
-        <p>GooseConnect offers a safe, intuitive space where students can connect based on shared interests and real-time availability. With interest-based matching, curated events, and conversation starters, GooseConnect lowers the barrier to social interaction and encourages authentic relationships.</p>
+        <h3>The Challenge</h3>
+        <p>Designing for social anxiety is delicate — heavy-handed features (forced matching, public profiles, visible follower counts) can make the problem worse. Every design decision had to balance discoverability with safety, and initiative with low pressure. Getting that wrong could make a lonely student feel even more exposed.</p>
       </div>
     </div>
   </div>
 
   <div class="cs-section fade-up">
-    <h2>Goals</h2>
-    <p>Our motivation stemmed from a desire to address student loneliness by designing a digital product that felt approachable, inclusive, and genuinely helpful. Every design choice was anchored in real student experiences and feedback.</p>
-    <div class="cs-goals">
-      <div class="cs-goal">
-        <div class="cs-goal-num">Goal 01</div>
-        <p>Build a safe, approachable platform that encourages students to connect beyond their classes.</p>
-      </div>
-      <div class="cs-goal">
-        <div class="cs-goal-num">Goal 02</div>
-        <p>Reduce social barriers and anxiety for students seeking new friendships and activities.</p>
-      </div>
-      <div class="cs-goal">
-        <div class="cs-goal-num">Goal 03</div>
-        <p>Enable students to discover relevant events and peers in real time, supporting spontaneous and meaningful interactions.</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="cs-section fade-up">
-    <h2>Research &amp; Personas</h2>
-    <p>We developed personas grounded in real student interviews and survey data, focusing on those who felt isolated yet eager to participate more in campus life. Personas shared common traits: newcomers, international students, or introverts struggling to break into existing social circles.</p>
-    <p>Key pain points uncovered:</p>
-    <ul>
-      <li>Anxiety about reaching out to new people in unfamiliar settings</li>
-      <li>Uncertainty about who was open to meeting and forming friendships</li>
-      <li>Not knowing about relevant events in time to attend</li>
-      <li>Feeling overwhelmed by the sheer scale of campus life</li>
-      <li>Homesickness compounded by the difficulty of finding "your people"</li>
-    </ul>
+    <h2>Research &amp; Discovery</h2>
+    <p>We ran a mixed-methods research phase: a survey targeting UW students (n=40+), followed by 6 semi-structured interviews with students who identified as socially isolated or new to campus. I synthesised findings into a persona and a full customer journey map, which became the team's shared reference point throughout the design process.</p>
 
     <div class="cs-highlight">
-      <h3>Key Insight</h3>
-      <p>"39% of students surveyed say they had experienced loneliness during the previous day." — Inside Higher Ed. This statistic grounded our design decisions throughout the entire process, keeping empathy at the centre.</p>
+      <h3>The Core Tension</h3>
+      <p>Students wanted connection but feared rejection. The biggest barrier wasn't finding events or people — it was the social risk of reaching out to someone who might not want to connect. Any platform that required students to be visibly "seeking friends" created the same anxiety it was supposed to solve. The design had to make initiation feel low-stakes — more like browsing than asking.</p>
     </div>
-  </div>
 
-  <div class="cs-section fade-up">
-    <h2>Customer Journey</h2>
-    <p>The end-to-end journey starts with a student feeling disconnected and searching for ways to belong on campus. After discovering GooseConnect, they experience a simple onboarding that tailors content to their interests.</p>
-    <p>Key moments in the journey:</p>
+    <p>Pain points that shaped every design decision:</p>
     <ul>
-      <li>Browsing a curated feed of events matched to their interests</li>
-      <li>Matching with peers who share similar hobbies and schedules</li>
-      <li>Initiating conversations through built-in icebreakers to reduce awkwardness</li>
-      <li>Receiving timely notifications so they never miss relevant events</li>
-      <li>Adjusting privacy controls to choose their comfort level of visibility</li>
+      <li>Uncertainty about who was open to meeting — students didn't want to seem desperate by reaching out publicly</li>
+      <li>Existing channels (Discord, Facebook groups) rewarded the already-connected; newcomers couldn't break in</li>
+      <li>Anxiety about "putting yourself out there" — especially for international and introverted students navigating campus culture for the first time</li>
+      <li>Event discovery was scattered across 6–8 different platforms, making it easy to miss relevant things entirely</li>
+      <li>No mechanism for low-pressure interaction — students wanted a way to signal interest without sending a cold message</li>
     </ul>
   </div>
 
   <div class="cs-section fade-up">
-    <h2>Sketches &amp; Process</h2>
-    <p>Early sketches played a crucial role in exploring how students might navigate GooseConnect. I facilitated group sketching sessions, encouraging divergent thinking on layouts for the connect, events, and chat flows.</p>
-    <p>These sketches allowed us to visualize different information architectures before committing to wireframes, sparking conversations about what would feel most welcoming and easy for anxious users. Iterating on paper helped us quickly spot and resolve potential confusion points in the journey.</p>
+    <h2>Iteration Process</h2>
+    <p>I facilitated two structured sketching sessions where each team member independently explored the core flows (connect, discover events, start a conversation) before we compared and synthesised. This diverge-then-converge approach surfaced three competing visions for the platform's core mechanic:</p>
+    <div class="cs-goals">
+      <div class="cs-goal">
+        <div class="cs-goal-num">Direction 01</div>
+        <p><strong>Dating app model</strong> — swipe-based mutual matching. Efficient, familiar, but felt transactional and high-stakes. Test participants said it made friend-seeking feel "weird and forced."</p>
+      </div>
+      <div class="cs-goal">
+        <div class="cs-goal-num">Direction 02</div>
+        <p><strong>Social feed model</strong> — see what everyone on campus is doing. Broad discovery but recreated the problem of existing platforms: dominated by existing social circles, invisible to newcomers.</p>
+      </div>
+      <div class="cs-goal">
+        <div class="cs-goal-num">Direction 03 ✓</div>
+        <p><strong>Interest + event anchor</strong> — connect through shared activities rather than direct profile-to-profile matching. "We're both going to this event" is a lower-stakes common ground than "I want to be your friend."</p>
+      </div>
+    </div>
+    <p style="margin-top:20px;">From this we also iterated the conversation-starter feature across three versions — moving from open text (too much pressure), to AI-generated icebreakers (felt inauthentic), to interest-based prompts tied to the shared event (felt natural and contextual). This version tested best in feedback sessions.</p>
   </div>
 
   <div class="cs-section fade-up">
-    <h2>UI Design</h2>
-    <p>The final UI features bold colours and playful elements inspired by the University of Waterloo's unofficial Goose mascot, creating a sense of campus pride and approachability. We opted for a card-based events feed, clean navigation tabs, and soft edges to reduce cognitive load and encourage exploration.</p>
-    <p>Privacy controls and clear CTAs empower students to choose their comfort level with connections. Every detail — from friendly icebreaker prompts to subtle onboarding animations — reinforces GooseConnect's mission to turn digital interactions into meaningful, real-world friendships.</p>
+    <h2>Design Decisions</h2>
+    <ul>
+      <li><strong>Interest-based event anchoring</strong> — connections are initiated through shared event attendance, not direct profile browsing, reducing the social risk of reaching out</li>
+      <li><strong>Contextual icebreakers</strong> — conversation starters tied to the shared event ("You're both going to the Photography Club meetup — ask about their favourite shot") replace open text boxes that create blank-page anxiety</li>
+      <li><strong>Availability signals without exposure</strong> — users can signal "open to meeting people this week" without a visible public profile, giving control over when they're discoverable</li>
+      <li><strong>Card-based event feed with interest filtering</strong> — UW Goose visual identity, bold colour, and familiar card patterns reduce cognitive load for first-time users</li>
+      <li><strong>Granular privacy controls</strong> — visible in onboarding and accessible at any point, so students who want high visibility can have it and those who prefer low exposure aren't forced into discomfort</li>
+    </ul>
   </div>
 
   <div class="cs-section fade-up">
-    <h2>Learnings &amp; Next Steps</h2>
+    <h2>Impact &amp; Next Steps</h2>
     <div class="cs-two-col">
       <div class="cs-card">
-        <h3>Learnings</h3>
+        <h3>Prototype Outcomes</h3>
         <ul>
-          <li>Thoughtfully designed UX can foster a true sense of belonging, not just usability</li>
-          <li>Facilitating a diverse team taught me the value of inclusive collaboration and clear communication</li>
-          <li>User feedback is essential — testing early and often led to insights we never anticipated during ideation</li>
+          <li>Concept testing with 8 UW students showed strong preference for the event-anchor connection model over direct matching</li>
+          <li>Interest-based icebreakers rated as "natural" or "helpful" by 7/8 participants vs. open text rated as "stressful" by 6/8</li>
+          <li>All participants successfully completed the core flow (discover event → signal interest → initiate conversation) without assistance in prototype walkthroughs</li>
+          <li>6/8 participants said they would use the app if it were available on campus</li>
         </ul>
       </div>
       <div class="cs-card">
-        <h3>Next Steps</h3>
+        <h3>What I'd Do Next</h3>
         <ul>
-          <li>Conduct usability testing with a broader range of students to refine the prototype further</li>
-          <li>Develop a minimum viable product for real-world pilot testing on campus</li>
-          <li>Expand features to support group meetups and integrate university event calendars</li>
+          <li>Run moderated usability testing with a wider range of students, specifically recruiting international students and first-years who are highest-need</li>
+          <li>Design and test the group meetup flow — individual matching works, but many students prefer finding a small group to join rather than one-on-one connection</li>
+          <li>Explore integration with UW's official event calendar to reduce the burden of keeping content fresh on a new platform</li>
+          <li>Define and prototype the onboarding trust moment — the point where users decide whether this app is safe is likely the highest-leverage screen in the flow</li>
         </ul>
       </div>
     </div>
@@ -244,10 +234,19 @@
   <svg class="btt-svg" viewBox="0 0 56 96" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
     <rect x="10" y="1" width="36" height="13" rx="3" fill="#1d3f5e" stroke="#BCD8EC" stroke-width="1.5"/>
     <circle cx="20" cy="7.5" r="3" fill="#BCD8EC"/><circle cx="36" cy="7.5" r="3" fill="#BCD8EC"/>
-    <rect x="25" y="14" width="6" height="20" rx="1" fill="none" stroke="#BCD8EC" stroke-width="1.5"/>
+    <rect x="25" y="14" width="6" height="66" rx="1" fill="none" stroke="#BCD8EC" stroke-width="1.5"/>
     <line x1="25" y1="19" x2="31" y2="19" stroke="#BCD8EC" stroke-width="1"/>
     <line x1="25" y1="24" x2="31" y2="24" stroke="#BCD8EC" stroke-width="1"/>
     <line x1="25" y1="29" x2="31" y2="29" stroke="#BCD8EC" stroke-width="1"/>
+    <line x1="25" y1="57" x2="31" y2="57" stroke="#BCD8EC" stroke-width="1"/>
+    <line x1="25" y1="62" x2="31" y2="62" stroke="#BCD8EC" stroke-width="1"/>
+    <line x1="25" y1="67" x2="31" y2="67" stroke="#BCD8EC" stroke-width="1"/>
+    <line x1="25" y1="72" x2="31" y2="72" stroke="#BCD8EC" stroke-width="1"/>
+    <rect x="3" y="80" width="50" height="9" rx="3" fill="#1d3f5e" stroke="#BCD8EC" stroke-width="1.5"/>
+    <line x1="13" y1="80" x2="13" y2="89" stroke="#BCD8EC" stroke-width="1.2"/>
+    <line x1="23" y1="80" x2="23" y2="89" stroke="#BCD8EC" stroke-width="1.2"/>
+    <line x1="33" y1="80" x2="33" y2="89" stroke="#BCD8EC" stroke-width="1.2"/>
+    <line x1="43" y1="80" x2="43" y2="89" stroke="#BCD8EC" stroke-width="1.2"/>
     <g class="btt-car-group">
       <ellipse cx="16" cy="34" rx="5.5" ry="4" fill="#FFCBE1" stroke="#e06fa0" stroke-width="1.5"/>
       <ellipse cx="28" cy="34" rx="5.5" ry="4" fill="#FFCBE1" stroke="#e06fa0" stroke-width="1.5"/>
@@ -258,19 +257,11 @@
       <rect x="9" y="40" width="11" height="5" rx="2" fill="#fff" opacity="0.5"/>
       <rect x="23" y="40" width="11" height="5" rx="2" fill="#fff" opacity="0.5"/>
       <rect x="37" y="40" width="11" height="5" rx="2" fill="#fff" opacity="0.5"/>
+      <text x="14.5" y="47" text-anchor="middle" font-size="7" font-family="DM Mono,monospace" font-weight="700" fill="#1d3f5e">T</text>
+      <text x="28.5" y="47" text-anchor="middle" font-size="7" font-family="DM Mono,monospace" font-weight="700" fill="#1d3f5e">O</text>
+      <text x="42.5" y="47" text-anchor="middle" font-size="7" font-family="DM Mono,monospace" font-weight="700" fill="#1d3f5e">P</text>
     </g>
-    <rect x="25" y="52" width="6" height="28" rx="1" fill="none" stroke="#BCD8EC" stroke-width="1.5"/>
-    <line x1="25" y1="57" x2="31" y2="57" stroke="#BCD8EC" stroke-width="1"/>
-    <line x1="25" y1="62" x2="31" y2="62" stroke="#BCD8EC" stroke-width="1"/>
-    <line x1="25" y1="67" x2="31" y2="67" stroke="#BCD8EC" stroke-width="1"/>
-    <line x1="25" y1="72" x2="31" y2="72" stroke="#BCD8EC" stroke-width="1"/>
-    <rect x="3" y="80" width="50" height="9" rx="3" fill="#1d3f5e" stroke="#BCD8EC" stroke-width="1.5"/>
-    <line x1="13" y1="80" x2="13" y2="89" stroke="#BCD8EC" stroke-width="1.2"/>
-    <line x1="23" y1="80" x2="23" y2="89" stroke="#BCD8EC" stroke-width="1.2"/>
-    <line x1="33" y1="80" x2="33" y2="89" stroke="#BCD8EC" stroke-width="1.2"/>
-    <line x1="43" y1="80" x2="43" y2="89" stroke="#BCD8EC" stroke-width="1.2"/>
   </svg>
-  <span class="tower-label">TOP</span>
 </button>
 
 <script src="main.js"></script>

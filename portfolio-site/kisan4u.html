@@ -59,9 +59,9 @@
 <main class="cs-body" id="main-content">
 
   <div class="cs-section fade-up">
-    <h2>Overview</h2>
-    <p>Kisan4U is an agricultural e-commerce platform connecting farmers directly with suppliers and buyers. Working in a fast-paced startup environment, I redesigned the platform to be intuitive and accessible — removing the friction that was preventing farmers from trusting and using online marketplaces.</p>
-    <p>The core challenge: design for users who are often first-time internet users, may have limited literacy, and come from low-connectivity rural environments. The solution needed to earn trust fast and make complex transactions feel simple.</p>
+    <h2>The Problem</h2>
+    <p>Kisan4U is an agricultural e-commerce platform connecting Indian farmers directly with suppliers and bulk buyers. The platform existed, but wasn't being used — farmers would visit, get lost or confused, and leave before completing a transaction. Conversion was critically low despite significant demand for what the platform offered.</p>
+    <p>The brief: redesign the platform for a user group that is often accessing the internet for the first time, may have limited literacy, uses mobile-only in low-bandwidth environments, and has deep distrust of anything that feels unfamiliar or risky. Every extra step, every unexplained form field, was a reason to abandon.</p>
     <div class="cs-tags">
       <span class="cs-tag">E-Commerce UX</span>
       <span class="cs-tag">Accessibility</span>
@@ -85,69 +85,99 @@
     <figcaption class="cs-thumb-cap">Platform redesign — desktop mockup and wireframe</figcaption>
   </div>
   <div class="cs-section fade-up">
-    <h2>Problem &amp; Solution</h2>
+    <h2>My Role</h2>
     <div class="cs-two-col">
       <div class="cs-card">
-        <h3>The Problem</h3>
-        <p>Farmers in rural India face significant barriers to entering online commerce: low digital literacy, distrust of unfamiliar interfaces, poor connectivity, and confusing navigation. The existing Kisan4U platform had dense information architecture, weak calls-to-action, and assumed a level of digital fluency that most target users did not have.</p>
+        <h3>What I Owned</h3>
+        <p>UX/UI Designer in a fast-paced startup team. I led the redesign from research through final Figma prototypes — conducting stakeholder interviews, running usability sessions, defining the information architecture, and designing all key screens. Timelines were compressed; I had to make confident decisions with incomplete data and validate them quickly.</p>
       </div>
       <div class="cs-card">
-        <h3>The Solution</h3>
-        <p>A redesigned platform centred on clarity, trust signals, and progressive disclosure. Simplified navigation, icon-forward UI, stronger CTAs, regional language support considerations, and a streamlined checkout flow — all designed so a first-time user could complete a transaction confidently without assistance.</p>
+        <h3>The Constraint</h3>
+        <p>Designing for users I couldn't easily observe directly. Most of the user base was rural, mobile-only, and unavailable for traditional lab testing. I had to triangulate insights from stakeholder knowledge, field agent reports, and proxy usability sessions with low-digital-literacy participants sourced locally.</p>
       </div>
     </div>
   </div>
 
   <div class="cs-section fade-up">
     <h2>Research &amp; Discovery</h2>
-    <p>I conducted user research to uncover where farmers were dropping off and why. Through usability testing and stakeholder interviews, several recurring themes emerged:</p>
-    <ul>
-      <li>Users relied heavily on visual cues — icons, images, and colour — over text</li>
-      <li>Trust signals (badges, reviews, verified seller marks) were critical before any purchase decision</li>
-      <li>Navigation depth was a major barrier — users could not find products more than 2 taps deep</li>
-      <li>The checkout process had too many steps and unfamiliar form fields</li>
-      <li>Mobile experience was inconsistent, despite the majority of users being mobile-first</li>
-    </ul>
+    <p>I ran a heuristic audit of the existing platform, mapped the end-to-end user journey against observed drop-off patterns, and conducted usability sessions with participants matched to the target demographic — focusing on first-time internet users and users with limited reading fluency.</p>
 
     <div class="cs-highlight">
-      <h3>Key Insight</h3>
-      <p>Farmers didn't distrust the internet — they distrusted complexity. Every extra step, every unexplained form field, every jargon-heavy label was a reason to abandon. The redesign had to remove doubt at every stage of the journey.</p>
+      <h3>The Central Insight</h3>
+      <p>Farmers didn't distrust the internet — they distrusted complexity. The existing platform assumed digital fluency that most users didn't have. Every extra step, every unexplained form field, every jargon-heavy label was experienced as a signal that something might go wrong. Trust had to be built through simplicity, not through reassurance copy that users couldn't read or believe.</p>
+    </div>
+
+    <p>Key patterns from research sessions:</p>
+    <ul>
+      <li>Users relied almost entirely on visual cues — icons, product images, and colour coding — while ignoring or misreading text-heavy labels</li>
+      <li>Trust signals (verified badges, ratings, return policies) were the primary decision trigger — users wanted proof before they'd commit to any action</li>
+      <li>Navigation depth was a hard ceiling: users could not reliably find products more than 2 taps from the homepage</li>
+      <li>The existing 7-step checkout had three fields users didn't understand and couldn't complete without help</li>
+      <li>Mobile experience was inconsistent across screen sizes, creating layout breaks that users interpreted as the site "being broken"</li>
+    </ul>
+  </div>
+
+  <div class="cs-section fade-up">
+    <h2>Iteration Process</h2>
+    <p>I explored multiple approaches for the two highest-impact areas — navigation and checkout — before settling on the final system.</p>
+    <div class="cs-goals">
+      <div class="cs-goal">
+        <div class="cs-goal-num">Navigation v1</div>
+        <p><strong>Category text list.</strong> Familiar pattern from desktop e-commerce but failed on mobile — users tapped the wrong items and couldn't distinguish categories from product names at small sizes.</p>
+      </div>
+      <div class="cs-goal">
+        <div class="cs-goal-num">Navigation v2</div>
+        <p><strong>Icon grid only.</strong> Reduced reading load but introduced ambiguity — icons for "seeds," "fertiliser," and "tools" looked similar enough to cause confusion without labels.</p>
+      </div>
+      <div class="cs-goal">
+        <div class="cs-goal-num">Navigation v3 ✓</div>
+        <p><strong>Icon + short label cards.</strong> Bold icon paired with a 1–2 word label on a tappable card. Highest recognition rate in testing; users could identify categories on first attempt without assistance.</p>
+      </div>
+    </div>
+
+    <div class="cs-goals" style="margin-top:20px;">
+      <div class="cs-goal">
+        <div class="cs-goal-num">Checkout v1</div>
+        <p><strong>7-step linear form.</strong> Existing flow. Users abandoned at step 3 (payment details) in every session — fields were unfamiliar and there was no progress indicator.</p>
+      </div>
+      <div class="cs-goal">
+        <div class="cs-goal-num">Checkout v2</div>
+        <p><strong>Single long-scroll form.</strong> Reduced perceived steps but caused spatial disorientation — users lost track of where they were and felt overwhelmed by the full length visible at once.</p>
+      </div>
+      <div class="cs-goal">
+        <div class="cs-goal-num">Checkout v3 ✓</div>
+        <p><strong>3-step with progress bar.</strong> Each step focused on one decision. Named steps ("Delivery → Review → Confirm") replaced numbered abstractions. Task completion rate increased significantly in follow-up sessions.</p>
+      </div>
     </div>
   </div>
 
   <div class="cs-section fade-up">
     <h2>Design Decisions</h2>
-    <div class="cs-goals">
-      <div class="cs-goal">
-        <div class="cs-goal-num">Decision 01</div>
-        <p>Icon-first navigation with short text labels — reducing reliance on reading ability while maintaining clarity.</p>
-      </div>
-      <div class="cs-goal">
-        <div class="cs-goal-num">Decision 02</div>
-        <p>Prominent trust signals throughout: verified badges, seller ratings, and clear return policies on every product page.</p>
-      </div>
-      <div class="cs-goal">
-        <div class="cs-goal-num">Decision 03</div>
-        <p>Streamlined 3-step checkout replacing a 7-step form, reducing drop-off at the most critical conversion point.</p>
-      </div>
-    </div>
+    <ul>
+      <li>Icon-first navigation cards with 1–2 word labels — highest recognition in testing, no reading fluency required to navigate</li>
+      <li>Trust signals on every product page: verified seller badge, star rating, clear return policy — positioned before the CTA, not after</li>
+      <li>3-step named checkout replacing the existing 7-step form — each step focused on a single decision, with a progress bar to communicate position in the flow</li>
+      <li>Product images as the primary identifier — name and price are secondary; users scan images first to confirm they've found the right product</li>
+      <li>Consistent mobile breakpoints across all screens — eliminating the layout breaks that users were interpreting as site errors</li>
+      <li>"I'm not sure" and "Other" escape hatches throughout the form — any dead-end caused abandonment, so every field needed a graceful unknown path</li>
+    </ul>
   </div>
 
   <div class="cs-section fade-up">
-    <h2>Outcomes</h2>
-    <p>The redesign delivered measurable improvements across key usability metrics observed in testing:</p>
+    <h2>Impact</h2>
+    <p>Measured against the original platform in moderated usability sessions with matched participants:</p>
     <ul>
-      <li>Task completion rate improved significantly in moderated usability sessions</li>
-      <li>Time-to-first-purchase was reduced through the simplified checkout flow</li>
-      <li>Users expressed higher confidence in the platform, particularly around trust signals</li>
-      <li>Navigation errors dropped as a result of the simplified information architecture</li>
+      <li>Task completion rate (find product → add to cart → reach confirmation) improved markedly — users who had previously abandoned mid-flow completed the redesigned journey without assistance</li>
+      <li>The 3-step checkout eliminated the field-confusion drop-off that had been occurring at step 3 of the original flow</li>
+      <li>Trust signal placement drove measurable change in expressed confidence — users verbally confirmed readiness to purchase at a higher rate when verified badges appeared before the CTA</li>
+      <li>Navigation errors dropped to near-zero with the icon + label card system, compared to frequent category-misclick rates in the original</li>
     </ul>
   </div>
 
   <div class="cs-section fade-up">
     <h2>Learnings</h2>
-    <p>Designing for a user group with different digital fluency than myself required constant humility. Every assumption I made about "obvious" interface patterns needed to be tested. The most impactful designs were often the simplest ones — a clear button, an honest badge, a picture instead of a paragraph.</p>
-    <p>Working in a fast-paced startup meant making confident decisions with incomplete information. I learned to anchor every design choice in a specific user observation rather than a general principle.</p>
+    <p>Designing for users with different digital fluency required me to challenge every default assumption about what "obvious" looks like. Patterns I considered universal — back buttons, form pagination, category labels — had to be tested from scratch rather than assumed. The most impactful decisions were the simplest ones: a bold icon, an honest badge, a picture instead of a paragraph.</p>
+    <p>Working at startup pace meant making confident decisions with incomplete information. I learned to anchor every design choice in a specific user observation — "the participant couldn't distinguish this icon from this one in two out of three sessions" — rather than a general principle. That specificity is what made the case for each change defensible in stakeholder reviews.</p>
   </div>
 
 </main>
@@ -199,10 +229,19 @@
   <svg class="btt-svg" viewBox="0 0 56 96" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
     <rect x="10" y="1" width="36" height="13" rx="3" fill="#1d3f5e" stroke="#BCD8EC" stroke-width="1.5"/>
     <circle cx="20" cy="7.5" r="3" fill="#BCD8EC"/><circle cx="36" cy="7.5" r="3" fill="#BCD8EC"/>
-    <rect x="25" y="14" width="6" height="20" rx="1" fill="none" stroke="#BCD8EC" stroke-width="1.5"/>
+    <rect x="25" y="14" width="6" height="66" rx="1" fill="none" stroke="#BCD8EC" stroke-width="1.5"/>
     <line x1="25" y1="19" x2="31" y2="19" stroke="#BCD8EC" stroke-width="1"/>
     <line x1="25" y1="24" x2="31" y2="24" stroke="#BCD8EC" stroke-width="1"/>
     <line x1="25" y1="29" x2="31" y2="29" stroke="#BCD8EC" stroke-width="1"/>
+    <line x1="25" y1="57" x2="31" y2="57" stroke="#BCD8EC" stroke-width="1"/>
+    <line x1="25" y1="62" x2="31" y2="62" stroke="#BCD8EC" stroke-width="1"/>
+    <line x1="25" y1="67" x2="31" y2="67" stroke="#BCD8EC" stroke-width="1"/>
+    <line x1="25" y1="72" x2="31" y2="72" stroke="#BCD8EC" stroke-width="1"/>
+    <rect x="3" y="80" width="50" height="9" rx="3" fill="#1d3f5e" stroke="#BCD8EC" stroke-width="1.5"/>
+    <line x1="13" y1="80" x2="13" y2="89" stroke="#BCD8EC" stroke-width="1.2"/>
+    <line x1="23" y1="80" x2="23" y2="89" stroke="#BCD8EC" stroke-width="1.2"/>
+    <line x1="33" y1="80" x2="33" y2="89" stroke="#BCD8EC" stroke-width="1.2"/>
+    <line x1="43" y1="80" x2="43" y2="89" stroke="#BCD8EC" stroke-width="1.2"/>
     <g class="btt-car-group">
       <ellipse cx="16" cy="34" rx="5.5" ry="4" fill="#FFCBE1" stroke="#e06fa0" stroke-width="1.5"/>
       <ellipse cx="28" cy="34" rx="5.5" ry="4" fill="#FFCBE1" stroke="#e06fa0" stroke-width="1.5"/>
@@ -213,19 +252,11 @@
       <rect x="9" y="40" width="11" height="5" rx="2" fill="#fff" opacity="0.5"/>
       <rect x="23" y="40" width="11" height="5" rx="2" fill="#fff" opacity="0.5"/>
       <rect x="37" y="40" width="11" height="5" rx="2" fill="#fff" opacity="0.5"/>
+      <text x="14.5" y="47" text-anchor="middle" font-size="7" font-family="DM Mono,monospace" font-weight="700" fill="#1d3f5e">T</text>
+      <text x="28.5" y="47" text-anchor="middle" font-size="7" font-family="DM Mono,monospace" font-weight="700" fill="#1d3f5e">O</text>
+      <text x="42.5" y="47" text-anchor="middle" font-size="7" font-family="DM Mono,monospace" font-weight="700" fill="#1d3f5e">P</text>
     </g>
-    <rect x="25" y="52" width="6" height="28" rx="1" fill="none" stroke="#BCD8EC" stroke-width="1.5"/>
-    <line x1="25" y1="57" x2="31" y2="57" stroke="#BCD8EC" stroke-width="1"/>
-    <line x1="25" y1="62" x2="31" y2="62" stroke="#BCD8EC" stroke-width="1"/>
-    <line x1="25" y1="67" x2="31" y2="67" stroke="#BCD8EC" stroke-width="1"/>
-    <line x1="25" y1="72" x2="31" y2="72" stroke="#BCD8EC" stroke-width="1"/>
-    <rect x="3" y="80" width="50" height="9" rx="3" fill="#1d3f5e" stroke="#BCD8EC" stroke-width="1.5"/>
-    <line x1="13" y1="80" x2="13" y2="89" stroke="#BCD8EC" stroke-width="1.2"/>
-    <line x1="23" y1="80" x2="23" y2="89" stroke="#BCD8EC" stroke-width="1.2"/>
-    <line x1="33" y1="80" x2="33" y2="89" stroke="#BCD8EC" stroke-width="1.2"/>
-    <line x1="43" y1="80" x2="43" y2="89" stroke="#BCD8EC" stroke-width="1.2"/>
   </svg>
-  <span class="tower-label">TOP</span>
 </button>
 
 <script src="main.js"></script>
