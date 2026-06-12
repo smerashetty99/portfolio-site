@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ontario Exposure Registry — Smera Shetty</title>
+  <meta name="description" content="UX research case study: Ontario Occupational Exposure Registry usability testing and AI-assisted research at the Ontario Ministry of Transportation."/>
+  <link rel="icon" type="image/jpeg" href="Favicon.jpeg"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body class="cs-page">
+
+<div class="cursor" aria-hidden="true"></div>
+<div class="scroll-progress" style="width:0%" role="progressbar" aria-label="Page scroll progress"></div>
+
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
+<nav aria-label="Site navigation">
+  <div class="nav-logo"><a href="index.html" style="color:inherit" aria-label="Smera Shetty — home"><span class="nav-star" aria-hidden="true">✦</span> Smera Shetty</a></div>
+  <ul class="nav-links">
+    <li><a href="index.html#projects">Projects</a></li>
+    <li><a href="index.html#about">About</a></li>
+    <li><a href="resume.html">Resume</a></li>
+    <li><a href="index.html#contact" class="nav-cta">Let's Talk</a></li>
+  </ul>
+</nav>
+
+<div class="cs-hero" style="background:linear-gradient(135deg,#1a2e5e,#1d3f5e);">
+  <div class="hero-stars" aria-hidden="true"></div>
+  <div class="cs-hero-inner">
+    <span class="cs-hero-emoji" role="img" aria-label="Government building emoji">🏛️</span>
+    <h1>Ontario Occupational Exposure Registry: AI-Assisted UX Research</h1>
+    <p>Usability testing, AI-integrated synthesis, and a time-study at the Ontario Ministry of Transportation — improving a public-facing self-tracker for workplace exposure reporting.</p>
+    <div class="cs-hero-actions">
+      <a href="index.html#projects" class="cs-back">← Back to portfolio</a>
+      <a href="https://www.ontario.ca/page/occupational-exposure-registry" target="_blank" rel="noopener noreferrer" class="cs-live"
+         aria-label="View the live Ontario Occupational Exposure Registry (opens in new tab)">View live site ↗</a>
+    </div>
+  </div>
+</div>
+
+<nav class="cs-toc" aria-label="Case study sections">
+  <a href="#overview">Overview</a>
+  <a href="#problem">Problem</a>
+  <a href="#insight">Key Insight</a>
+  <a href="#patterns">Patterns</a>
+  <a href="#recommendations">Recommendations</a>
+  <a href="#thinkai">Think.AI</a>
+  <a href="#guardrails">Guardrails</a>
+  <a href="#result">Result</a>
+  <a href="#learnings">Learnings</a>
+</nav>
+
+<div class="cs-meta" role="list" aria-label="Project details">
+  <div class="cs-meta-item" role="listitem">
+    <div class="cs-meta-label">Role</div>
+    <div class="cs-meta-value">Jr UX Designer / Jr Technical Analyst</div>
+  </div>
+  <div class="cs-meta-item" role="listitem">
+    <div class="cs-meta-label">Tools</div>
+    <div class="cs-meta-value">Figma, AI analysis tools, Miro</div>
+  </div>
+  <div class="cs-meta-item" role="listitem">
+    <div class="cs-meta-label">Context</div>
+    <div class="cs-meta-value">Government, Agile, Co-op</div>
+  </div>
+  <div class="cs-meta-item" role="listitem">
+    <div class="cs-meta-label">Timeline</div>
+    <div class="cs-meta-value">Jan – Apr 2026</div>
+  </div>
+  <div class="cs-meta-item" role="listitem">
+    <div class="cs-meta-label">Outcome</div>
+    <div class="cs-meta-value">~70% research time saved with AI</div>
+  </div>
+</div>
+
+<main class="cs-body" id="main-content">
+
+  <!-- Overview -->
+  <div class="cs-section fade-up" id="overview">
+    <div class="cs-eyebrow">Overview</div>
+    <h2>Research that shaped a live government service</h2>
+    <p>During my co-op placement at the Ontario Ministry of Transportation, I contributed to UX research and design for the Ontario Occupational Exposure Registry (OER) — a public-facing self-tracker that allows workers to record and monitor their exposures to hazardous substances in the workplace.</p>
+    <p>My core contribution was a two-part research study: <strong>Part A</strong> synthesized usability insights from three participant sessions on the OER prototype, and <strong>Part B</strong> evaluated the use of AI tools in the research workflow itself — measuring time savings, quality trade-offs, and practical guardrails for responsible AI integration in UX research.</p>
+    <p>I also served as Student Lead for the co-op cohort, co-organising team activities and a hybrid cross-office event across three Ontario locations.</p>
+    <div class="cs-tags">
+      <span class="cs-tag">Government UX</span>
+      <span class="cs-tag">Usability Testing</span>
+      <span class="cs-tag">AI-Assisted Research</span>
+      <span class="cs-tag">Accessibility</span>
+      <span class="cs-tag">Agile</span>
+      <span class="cs-tag">Journey Mapping</span>
+    </div>
+  </div>
+
+  <!-- Problem & Solution -->
+  <div class="cs-section fade-up" id="problem">
+    <div class="cs-eyebrow">Problem &amp; Approach</div>
+    <h2>Usability gaps in a tool where errors carry real consequences</h2>
+    <div class="cs-two-col">
+      <div class="cs-card">
+        <h3>The Challenge</h3>
+        <p>The OER self-tracker prototype had several usability gaps that risked real harm: users confused the personal tracker with official regulatory reporting, unclear "What happens next" guidance, dead-end pathways for unknown substances, and affordance issues that caused abandonment. The challenge was to surface these issues rigorously through usability testing and translate them into prioritised, actionable recommendations.</p>
+      </div>
+      <div class="cs-card">
+        <h3>The Approach</h3>
+        <p>Three moderated usability sessions with participants from diverse backgrounds. Human note-taking captured nuance and edge cases. AI tools assisted with transcription, theme clustering, and drafting artifact shells — then each output was validated against the raw session recordings. A time study measured exactly where AI added value and where human judgment was non-negotiable.</p>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:28px;">
+      <figure class="cs-thumb-fig">
+        <img src="thumb-mto-live.webp" loading="lazy" class="cs-thumb-img"
+             alt="Ontario Occupational Exposure Registry Self-Tracker live website landing page showing the public-facing OER tool"/>
+        <figcaption class="cs-thumb-cap">Live OER Self-Tracker — the public-facing tool that workers use to log workplace exposures</figcaption>
+      </figure>
+      <figure class="cs-thumb-fig">
+        <img src="thumb-mto-3.webp" loading="lazy" class="cs-thumb-img"
+             alt="OER self-tracker prototype — Provide exposure details form showing the multi-section input screen tested in usability sessions"/>
+        <figcaption class="cs-thumb-cap">Prototype — the detailed "Provide exposure details" form tested across all three usability sessions</figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <!-- Biggest Insight -->
+  <div class="cs-section fade-up" id="insight">
+    <div class="cs-eyebrow">Key Insight</div>
+    <h2>Users thought they were filing an official report — they weren't</h2>
+    <div class="cs-highlight">
+      <h3>Mental Model Mismatch</h3>
+      <p>Across all three sessions, participants sometimes interpreted the OER experience as "official reporting" rather than "personal tracking." When clarified, their perceived value shifted — they saw it as documentation support, recall aid, and self-protection. If this mismatch isn't addressed, users may delay medical care or workplace reporting under the false belief that submitting a self-tracker entry triggers external action.</p>
+    </div>
+    <p>This finding reframed the entire design priority: the platform's purpose must be made explicit at every stage, not just on the first screen.</p>
+  </div>
+
+  <!-- Key Patterns -->
+  <div class="cs-section fade-up" id="patterns">
+    <div class="cs-eyebrow">Patterns</div>
+    <h2>Six patterns repeated across every session</h2>
+    <div class="cs-goals" style="grid-template-columns:repeat(3,1fr);">
+      <div class="cs-goal">
+        <div class="cs-goal-num">Pattern 01</div>
+        <p>Documentation is the adoption driver — users value the tool as evidence, recall support, and self-protection, not as a reporting mechanism.</p>
+      </div>
+      <div class="cs-goal">
+        <div class="cs-goal-num">Pattern 02</div>
+        <p>Proof and retention are trust-critical. Users need a download, email confirmation, or confirmation number to trust the record was saved.</p>
+      </div>
+      <div class="cs-goal">
+        <div class="cs-goal-num">Pattern 03</div>
+        <p>"What happens next" must be explicit, with clear guidance distinguishing between urgent medical action and routine workplace reporting.</p>
+      </div>
+      <div class="cs-goal">
+        <div class="cs-goal-num">Pattern 04</div>
+        <p>Substance selection must match real-world knowledge — users need synonyms, "Other — specify," and "I'm not sure" options throughout.</p>
+      </div>
+      <div class="cs-goal">
+        <div class="cs-goal-num">Pattern 05</div>
+        <p>Flexible date precision prevents false precision and abandonment. Users shouldn't be forced to specify exact dates they can't recall.</p>
+      </div>
+      <div class="cs-goal">
+        <div class="cs-goal-num">Pattern 06</div>
+        <p>Accessibility and affordances are essential — primary actions need clear visual hierarchy, scroll cues, and predictable navigation throughout.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Recommendations -->
+  <div class="cs-section fade-up" id="recommendations">
+    <div class="cs-eyebrow">Recommendations</div>
+    <h2>Three priority tiers, ranked by user impact</h2>
+    <p>Findings were organised into three priority tiers based on user impact and feasibility:</p>
+
+    <div class="cs-two-col" style="margin-top:20px;">
+      <div class="cs-card" style="border-top:3px solid var(--pink-deep);">
+        <h3 style="color:var(--pink-deep);">Must — Highest Priority</h3>
+        <ul>
+          <li>Clarify the tool's purpose (personal tracker, not official report) early and repeatedly throughout the flow</li>
+          <li>Add explicit "What happens next" guidance with separate pathways for urgent help and official reporting</li>
+          <li>Fix all "Other" dead ends — always include "Other — please specify" to prevent abandonment</li>
+          <li>Support flexible dates and "I'm not sure" options consistently across every date field</li>
+        </ul>
+      </div>
+      <div class="cs-card" style="border-top:3px solid var(--sky-mid);">
+        <h3 style="color:var(--sky-deeper);">Should + Could</h3>
+        <ul>
+          <li>Default proof/retention: download + email + confirmation number after every submission</li>
+          <li>Define minimum critical dataset; progressively disclose optional fields to reduce overwhelm</li>
+          <li>Improve affordances: primary button prominence, scroll indicators, and consistent navigation</li>
+          <li>Support multi-exposure entries and a review/edit workflow before finalising proof</li>
+          <li>Guided "unknown substance" workflow (brand name, use, location, SDS sheet lookup)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- AI in UX Research -->
+  <div class="cs-section fade-up" id="thinkai">
+    <div class="cs-eyebrow">Think.AI</div>
+    <h2>AI cut research time by ~70% — with human review non-negotiable</h2>
+    <p>Part B of the study was an independent research initiative I led: a structured evaluation of where AI tools genuinely help in a UX research workflow, and where human judgment remains non-negotiable.</p>
+
+    <figure class="cs-thumb-fig" style="margin:20px 0 28px;">
+      <img src="thumb-mto.webp" loading="lazy" class="cs-thumb-img"
+           alt="Think.AI Use Case 4 document — AI-assisted user research project scope and solution statement"/>
+      <figcaption class="cs-thumb-cap">Think.AI — Use Case #4: AI-assisted user research · project scope document</figcaption>
+    </figure>
+
+    <div class="cs-highlight">
+      <h3>Measured Time Savings</h3>
+      <p>Manual research workflow: <strong style="color:var(--sky);">12h 1m total</strong> (review 6h 18m + synthesis 5h 43m). AI-assisted workflow: <strong style="color:var(--sky);">3h 37m total</strong> (transcription 2h 20m + synthesis 1h 17m). Overall reduction: <strong style="color:var(--sky);">~70%</strong> — with ~63% saved on review/transcription and ~78% on synthesis.</p>
+    </div>
+
+    <!-- Time savings bar chart -->
+    <div style="background:white;border-radius:16px;padding:28px 32px;margin:24px 0;border:1.5px solid rgba(188,216,236,.35);box-shadow:0 8px 28px rgba(29,63,94,.06);">
+      <p style="font-family:var(--font-mono);font-size:0.74rem;letter-spacing:.12em;color:var(--text-light);text-transform:uppercase;margin-bottom:20px;">Workflow time comparison</p>
+      <div style="margin-bottom:20px;">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px;">
+          <span style="font-size:0.88rem;font-weight:600;color:var(--text);">Manual workflow</span>
+          <span style="font-family:var(--font-mono);font-size:0.82rem;color:var(--text-mid);">12h 1m</span>
+        </div>
+        <div style="height:20px;background:var(--sky);border-radius:6px;width:100%;"></div>
+      </div>
+      <div style="margin-bottom:20px;">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px;">
+          <span style="font-size:0.88rem;font-weight:600;color:var(--text);">AI-assisted workflow</span>
+          <span style="font-family:var(--font-mono);font-size:0.82rem;color:var(--text-mid);">3h 37m</span>
+        </div>
+        <div style="height:20px;background:var(--green-soft);border-radius:6px;width:30%;"></div>
+      </div>
+      <p style="font-size:0.82rem;color:var(--text-mid);margin-top:16px;margin-bottom:0;">Per-session savings: <strong>P1 — 2h 39m</strong> &nbsp;·&nbsp; <strong>P2 — 3h 27m</strong> &nbsp;·&nbsp; <strong>P3 — 2h 18m</strong></p>
+      <p style="font-family:var(--font-mono);font-size:0.8rem;color:var(--sky-deeper);font-weight:700;margin-top:10px;margin-bottom:0;">~70% overall reduction in research workflow time</p>
+    </div>
+
+    <p style="margin-top:8px;">Savings breakdown: ~63% on review/transcription, ~78% on synthesis — but with the caveat that every AI output required human validation before use.</p>
+
+    <div class="cs-two-col" style="margin-top:24px;">
+      <div class="cs-card">
+        <h3>Where AI Added Value</h3>
+        <ul>
+          <li>Transcription first pass (required human correction for accuracy, formatting, and anonymisation)</li>
+          <li>Structured note formatting from session recordings</li>
+          <li>Cross-session theme clustering — accelerated pattern identification</li>
+          <li>Drafting artifact shells (personas, journey maps) for human editing and validation</li>
+        </ul>
+      </div>
+      <div class="cs-card">
+        <h3>Where Human Review Was Essential</h3>
+        <ul>
+          <li>Multi-exposure scenarios: AI under-emphasised that users may need to record multiple substances from a single exposure event without restarting</li>
+          <li>Prototype-fidelity blind spot: AI misread prototype limitations (e.g., an unbuilt "specify" path) as genuine usability failures</li>
+          <li>Implicit bias: AI generated male personas even when all participants were female — explicit demographic constraints and bias checklists are required</li>
+          <li>Compound edge cases require explicit prompting and verification against raw notes</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Guardrails -->
+  <div class="cs-section fade-up" id="guardrails">
+    <div class="cs-eyebrow">Guardrails</div>
+    <h2>Five rules for trusting AI exactly as far as it deserves</h2>
+    <p>Based on the pilot, I developed five practical guardrails for responsible AI integration in UX research:</p>
+    <ul>
+      <li>Include a "prototype limitations" section in every AI prompt so the model distinguishes real usability issues from prototype gaps</li>
+      <li>Constrain persona generation: specify participant attributes explicitly (including demographics) and require evidence links for every insight</li>
+      <li>Run a bias checklist on all generated artifacts before sharing — demographics, stereotypes, and unstated defaults</li>
+      <li>Require traceability: every theme must link back to a supporting quote and session reference</li>
+      <li>Label all outputs as "AI-assisted draft" and mandate human review before use in decision-making</li>
+    </ul>
+    <p style="margin-top:16px;">AI is most valuable as a <em>draft and clustering accelerator</em>. The analyst's job shifts from transcription to validation and critical review — which is where human judgment has the highest leverage.</p>
+  </div>
+
+  <!-- Live Product -->
+  <div class="cs-section fade-up" id="result">
+    <div class="cs-eyebrow">Result</div>
+    <h2>The registry is live for Ontario workers today</h2>
+    <p>The Ontario Occupational Exposure Registry is publicly accessible on the Ontario government website. Research findings from this study informed the usability, accessibility, and guidance improvements to the registry's self-tracker.</p>
+    <a href="https://www.ontario.ca/page/occupational-exposure-registry" target="_blank" rel="noopener noreferrer"
+       class="btn-view" style="display:inline-flex;margin-top:16px;"
+       aria-label="View the Ontario Occupational Exposure Registry on the Ontario government website (opens in new tab)">
+      View the live OER →
+    </a>
+  </div>
+
+  <!-- Learnings -->
+  <div class="cs-section fade-up" id="learnings">
+    <div class="cs-eyebrow">Learnings</div>
+    <h2>Efficiency and rigor are not in opposition</h2>
+    <p>Government UX research operates under constraints that private-sector work rarely faces: regulatory language requirements, multi-stakeholder sign-off, strict accessibility mandates, and the reality that errors in public services have real consequences for real people. Staying rigorous under those constraints — especially when AI tools are accelerating parts of the workflow — required constant critical review.</p>
+    <p>The AI integration pilot taught me that efficiency and rigor are not in opposition: AI at ~70% time savings is only valuable if the human review that follows is systematic. The most important skill wasn't knowing which tools to use — it was knowing exactly where to trust them and exactly where not to.</p>
+  </div>
+
+</main>
+
+<div class="cs-other-studies">
+  <h2>More Case Studies</h2>
+  <div class="cs-other-grid">
+    <a href="kisan4u.html" class="cs-other-card">
+      <div class="cs-other-emoji" role="img" aria-label="Wheat crop emoji">🌾</div>
+      <div class="cs-other-title">Kisan4U</div>
+      <div class="cs-other-desc">Accessible e-commerce for farmers and suppliers</div>
+    </a>
+    <a href="gooseconnect.html" class="cs-other-card">
+      <div class="cs-other-emoji" role="img" aria-label="Goose emoji">🦆</div>
+      <div class="cs-other-title">GooseConnect</div>
+      <div class="cs-other-desc">Campus connection platform for UW students</div>
+    </a>
+    <a href="willies.html" class="cs-other-card">
+      <div class="cs-other-emoji" role="img" aria-label="Chocolate bar emoji">🍫</div>
+      <div class="cs-other-title">Willie's Chocolates</div>
+      <div class="cs-other-desc">A magical, nostalgic chocolate brand experience</div>
+    </a>
+  </div>
+</div>
+
+<footer id="contact" style="background:var(--sky-dark);padding:56px 48px;text-align:center;position:relative;overflow:hidden;">
+  <div class="hero-stars" aria-hidden="true"></div>
+  <div class="footer-inner">
+    <p style="color:rgba(188,216,236,.65);font-size:0.95rem;margin-bottom:20px;">Get in touch</p>
+    <div class="contact-stubs" style="justify-content:center;">
+      <a href="mailto:smerashetty99@gmail.com" class="stub" aria-label="Send email to smerashetty99@gmail.com">
+        <span class="stub-icon" aria-hidden="true">✉️</span>
+        <div><span class="stub-label">Email</span><span class="stub-value">smerashetty99@gmail.com</span></div>
+      </a>
+      <a href="https://linkedin.com/in/smera-shetty" target="_blank" rel="noopener noreferrer" class="stub" aria-label="Visit Smera Shetty's LinkedIn profile (opens in new tab)">
+        <span class="stub-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#BCD8EC" width="20" height="20" aria-hidden="true" focusable="false">
+            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+          </svg>
+        </span>
+        <div><span class="stub-label">LinkedIn</span><span class="stub-value">linkedin.com/in/smera-shetty</span></div>
+      </a>
+    </div>
+    <p class="footer-tagline">Thanks for visiting. See you on the next ride.</p>
+  </div>
+</footer>
+
+<button class="back-to-top" id="backToTop" type="button" aria-label="Scroll back to top">
+  <svg class="btt-svg" viewBox="0 0 56 96" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+    <rect x="10" y="1" width="36" height="13" rx="3" fill="#1d3f5e" stroke="#BCD8EC" stroke-width="1.5"/>
+    <circle cx="20" cy="7.5" r="3" fill="#BCD8EC"/><circle cx="36" cy="7.5" r="3" fill="#BCD8EC"/>
+    <rect x="25" y="14" width="6" height="66" rx="1" fill="none" stroke="#BCD8EC" stroke-width="1.5"/>
+    <line x1="25" y1="19" x2="31" y2="19" stroke="#BCD8EC" stroke-width="1"/>
+    <line x1="25" y1="24" x2="31" y2="24" stroke="#BCD8EC" stroke-width="1"/>
+    <line x1="25" y1="29" x2="31" y2="29" stroke="#BCD8EC" stroke-width="1"/>
+    <line x1="25" y1="57" x2="31" y2="57" stroke="#BCD8EC" stroke-width="1"/>
+    <line x1="25" y1="62" x2="31" y2="62" stroke="#BCD8EC" stroke-width="1"/>
+    <line x1="25" y1="67" x2="31" y2="67" stroke="#BCD8EC" stroke-width="1"/>
+    <line x1="25" y1="72" x2="31" y2="72" stroke="#BCD8EC" stroke-width="1"/>
+    <rect x="3" y="80" width="50" height="9" rx="3" fill="#1d3f5e" stroke="#BCD8EC" stroke-width="1.5"/>
+    <line x1="13" y1="80" x2="13" y2="89" stroke="#BCD8EC" stroke-width="1.2"/>
+    <line x1="23" y1="80" x2="23" y2="89" stroke="#BCD8EC" stroke-width="1.2"/>
+    <line x1="33" y1="80" x2="33" y2="89" stroke="#BCD8EC" stroke-width="1.2"/>
+    <line x1="43" y1="80" x2="43" y2="89" stroke="#BCD8EC" stroke-width="1.2"/>
+    <g class="btt-car-group">
+      <ellipse cx="16" cy="34" rx="5.5" ry="4" fill="#FFCBE1" stroke="#e06fa0" stroke-width="1.5"/>
+      <ellipse cx="28" cy="34" rx="5.5" ry="4" fill="#FFCBE1" stroke="#e06fa0" stroke-width="1.5"/>
+      <ellipse cx="40" cy="34" rx="5.5" ry="4" fill="#FFCBE1" stroke="#e06fa0" stroke-width="1.5"/>
+      <rect x="7" y="34" width="42" height="18" rx="4" fill="#FFCBE1" stroke="#e06fa0" stroke-width="1.5"/>
+      <line x1="22" y1="34" x2="22" y2="52" stroke="#e06fa0" stroke-width="1.2"/>
+      <line x1="34" y1="34" x2="34" y2="52" stroke="#e06fa0" stroke-width="1.2"/>
+      <rect x="9" y="40" width="11" height="5" rx="2" fill="#fff" opacity="0.5"/>
+      <rect x="23" y="40" width="11" height="5" rx="2" fill="#fff" opacity="0.5"/>
+      <rect x="37" y="40" width="11" height="5" rx="2" fill="#fff" opacity="0.5"/>
+      <text x="14.5" y="47" text-anchor="middle" font-size="9" font-family="DM Mono,monospace" font-weight="700" fill="#1d3f5e" stroke="#1d3f5e" stroke-width="0.4" paint-order="stroke">T</text>
+      <text x="28.5" y="47" text-anchor="middle" font-size="9" font-family="DM Mono,monospace" font-weight="700" fill="#1d3f5e" stroke="#1d3f5e" stroke-width="0.4" paint-order="stroke">O</text>
+      <text x="42.5" y="47" text-anchor="middle" font-size="9" font-family="DM Mono,monospace" font-weight="700" fill="#1d3f5e" stroke="#1d3f5e" stroke-width="0.4" paint-order="stroke">P</text>
+    </g>
+  </svg>
+</button>
+
+<script src="main.js"></script>
+</body>
+</html>
