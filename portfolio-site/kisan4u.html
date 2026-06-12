@@ -33,9 +33,21 @@
     <span class="cs-hero-emoji">🌾</span>
     <h1>Kisan4U: Empowering Farmers with Simple Online Connections</h1>
     <p>Redesigning an e-commerce platform to be intuitive and accessible for farmers — breaking technological barriers and building trust in online agriculture marketplaces.</p>
-    <a href="index.html#projects" class="cs-back">← Back to portfolio</a>
+    <div class="cs-hero-actions">
+      <a href="index.html#projects" class="cs-back">← Back to portfolio</a>
+    </div>
   </div>
 </div>
+
+<nav class="cs-toc" aria-label="Case study sections">
+  <a href="#problem">Problem</a>
+  <a href="#role">Role</a>
+  <a href="#research">Research</a>
+  <a href="#iteration">Iteration</a>
+  <a href="#decisions">Decisions</a>
+  <a href="#result">Result</a>
+  <a href="#learnings">Learnings</a>
+</nav>
 
 <div class="cs-meta">
   <div class="cs-meta-item">
@@ -54,21 +66,19 @@
     <div class="cs-meta-label">Timeline</div>
     <div class="cs-meta-value">Jul – Aug 2025</div>
   </div>
+  <div class="cs-meta-item">
+    <div class="cs-meta-label">Outcome</div>
+    <div class="cs-meta-value">Near-zero navigation errors in testing</div>
+  </div>
 </div>
 
 <main class="cs-body" id="main-content">
 
-  <div class="cs-section fade-up">
-    <h2>The Problem</h2>
+  <div class="cs-section fade-up" id="problem">
+    <div class="cs-eyebrow">The Problem</div>
+    <h2>Farmers wanted to buy — the platform was in their way</h2>
     <p>Kisan4U is an agricultural e-commerce platform connecting Indian farmers directly with suppliers and bulk buyers. The platform existed, but wasn't being used — farmers would visit, get lost or confused, and leave before completing a transaction. Conversion was critically low despite significant demand for what the platform offered.</p>
     <p>The brief: redesign the platform for a user group that is often accessing the internet for the first time, may have limited literacy, uses mobile-only in low-bandwidth environments, and has deep distrust of anything that feels unfamiliar or risky. Every extra step, every unexplained form field, was a reason to abandon.</p>
-
-    <figure class="cs-thumb-fig" style="margin:24px 0 0;">
-      <img src="thumb-kisan4u.webp" loading="lazy" class="cs-thumb-img"
-           alt="Kisan4U original platform — dense homepage with text-heavy navigation, multiple competing CTAs, and no clear trust signals"
-           style="max-height:360px;"/>
-      <figcaption class="cs-thumb-cap">The existing Kisan4U platform — dense, text-heavy, and overwhelming for first-time users</figcaption>
-    </figure>
 
     <div class="cs-tags">
       <span class="cs-tag">E-Commerce UX</span>
@@ -80,8 +90,9 @@
   </div>
 
 
-  <div class="cs-section fade-up">
-    <h2>My Role</h2>
+  <div class="cs-section fade-up" id="role">
+    <div class="cs-eyebrow">My Role</div>
+    <h2>Owning the redesign end-to-end, at startup pace</h2>
     <div class="cs-two-col">
       <div class="cs-card">
         <h3>What I Owned</h3>
@@ -94,8 +105,9 @@
     </div>
   </div>
 
-  <div class="cs-section fade-up">
-    <h2>Research &amp; Discovery</h2>
+  <div class="cs-section fade-up" id="research">
+    <div class="cs-eyebrow">Research &amp; Discovery</div>
+    <h2>Farmers didn't distrust the internet — they distrusted complexity</h2>
     <p>I ran a heuristic audit of the existing platform, mapped the end-to-end user journey against observed drop-off patterns, and conducted usability sessions with participants matched to the target demographic — focusing on first-time internet users and users with limited reading fluency.</p>
 
     <div class="cs-highlight">
@@ -111,10 +123,21 @@
       <li>The existing 7-step checkout had three fields users didn't understand and couldn't complete without help</li>
       <li>Mobile experience was inconsistent across screen sizes, creating layout breaks that users interpreted as the site "being broken"</li>
     </ul>
+
+    <figure class="cs-thumb-fig" style="margin:28px 0 0;">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;background:var(--cream);padding:16px;">
+        <img src="kisan4u-persona.webp" loading="lazy" style="border-radius:10px;"
+             alt="Ramesh Patel — Kisan4U farmer persona showing goals, frustrations, and technology comfort level"/>
+        <img src="kisan4u-persona-2.webp" loading="lazy" style="border-radius:10px;"
+             alt="Neha Sharma — Kisan4U supplier persona showing goals, frustrations, and buying behaviour"/>
+      </div>
+      <figcaption class="cs-thumb-cap">Personas synthesised from research — a low-digital-literacy farmer and a supplier</figcaption>
+    </figure>
   </div>
 
-  <div class="cs-section fade-up">
-    <h2>Iteration Process</h2>
+  <div class="cs-section fade-up" id="iteration">
+    <div class="cs-eyebrow">Iteration</div>
+    <h2>Three rounds to a navigation and checkout that work without reading</h2>
     <p>I explored multiple approaches for the two highest-impact areas — navigation and checkout — before settling on the final system.</p>
     <div class="cs-goals">
       <div class="cs-goal">
@@ -147,14 +170,15 @@
     </div>
 
     <figure class="cs-thumb-fig" style="margin:28px 0 0;">
-      <img src="thumb-kisan4u-2.webp" loading="lazy" class="cs-thumb-img"
+      <img src="kisan4u-wireframe.webp" loading="lazy" class="cs-thumb-img"
            alt="Kisan4U wireframe showing the redesigned information architecture with simplified navigation, icon-forward category cards, and a streamlined product listing layout"/>
       <figcaption class="cs-thumb-cap">Redesign wireframe — simplified IA, icon-forward navigation cards, and restructured product grid</figcaption>
     </figure>
   </div>
 
-  <div class="cs-section fade-up">
-    <h2>Design Decisions</h2>
+  <div class="cs-section fade-up" id="decisions">
+    <div class="cs-eyebrow">Design Decisions</div>
+    <h2>Every decision anchored to an observed behaviour</h2>
     <ul>
       <li>Icon-first navigation cards with 1–2 word labels — highest recognition in testing, no reading fluency required to navigate</li>
       <li>Trust signals on every product page: verified seller badge, star rating, clear return policy — positioned before the CTA, not after</li>
@@ -163,10 +187,17 @@
       <li>Consistent mobile breakpoints across all screens — eliminating the layout breaks that users were interpreting as site errors</li>
       <li>"I'm not sure" and "Other" escape hatches throughout the form — any dead-end caused abandonment, so every field needed a graceful unknown path</li>
     </ul>
+
+    <figure class="cs-thumb-fig" style="margin:28px 0 0;">
+      <img src="kisan4u-page.webp" loading="lazy" class="cs-thumb-img" style="max-height:560px;"
+           alt="The redesigned Kisan4U homepage — bold product imagery, icon-forward category navigation, and clear trust badges for returns, pricing, and delivery"/>
+      <figcaption class="cs-thumb-cap">The redesigned Kisan4U homepage — visual-first navigation and trust badges before the CTA</figcaption>
+    </figure>
   </div>
 
-  <div class="cs-section fade-up">
-    <h2>Impact</h2>
+  <div class="cs-section fade-up" id="result">
+    <div class="cs-eyebrow">Result</div>
+    <h2>From abandoned carts to completed journeys</h2>
     <p>Measured against the original platform in moderated usability sessions with matched participants:</p>
     <ul>
       <li>Task completion rate (find product → add to cart → reach confirmation) improved markedly — users who had previously abandoned mid-flow completed the redesigned journey without assistance</li>
@@ -176,8 +207,9 @@
     </ul>
   </div>
 
-  <div class="cs-section fade-up">
-    <h2>Learnings</h2>
+  <div class="cs-section fade-up" id="learnings">
+    <div class="cs-eyebrow">Learnings</div>
+    <h2>Questioning what "obvious" really means</h2>
     <p>Designing for users with different digital fluency required me to challenge every default assumption about what "obvious" looks like. Patterns I considered universal — back buttons, form pagination, category labels — had to be tested from scratch rather than assumed. The most impactful decisions were the simplest ones: a bold icon, an honest badge, a picture instead of a paragraph.</p>
     <p>Working at startup pace meant making confident decisions with incomplete information. I learned to anchor every design choice in a specific user observation — "the participant couldn't distinguish this icon from this one in two out of three sessions" — rather than a general principle. That specificity is what made the case for each change defensible in stakeholder reviews.</p>
   </div>

@@ -34,9 +34,25 @@
     <span class="cs-hero-emoji" role="img" aria-label="Government building emoji">🏛️</span>
     <h1>Ontario Occupational Exposure Registry: AI-Assisted UX Research</h1>
     <p>Usability testing, AI-integrated synthesis, and a time-study at the Ontario Ministry of Transportation — improving a public-facing self-tracker for workplace exposure reporting.</p>
-    <a href="index.html#projects" class="cs-back">← Back to portfolio</a>
+    <div class="cs-hero-actions">
+      <a href="index.html#projects" class="cs-back">← Back to portfolio</a>
+      <a href="https://www.ontario.ca/page/occupational-exposure-registry" target="_blank" rel="noopener noreferrer" class="cs-live"
+         aria-label="View the live Ontario Occupational Exposure Registry (opens in new tab)">View live site ↗</a>
+    </div>
   </div>
 </div>
+
+<nav class="cs-toc" aria-label="Case study sections">
+  <a href="#overview">Overview</a>
+  <a href="#problem">Problem</a>
+  <a href="#insight">Key Insight</a>
+  <a href="#patterns">Patterns</a>
+  <a href="#recommendations">Recommendations</a>
+  <a href="#thinkai">Think.AI</a>
+  <a href="#guardrails">Guardrails</a>
+  <a href="#result">Result</a>
+  <a href="#learnings">Learnings</a>
+</nav>
 
 <div class="cs-meta" role="list" aria-label="Project details">
   <div class="cs-meta-item" role="listitem">
@@ -55,13 +71,18 @@
     <div class="cs-meta-label">Timeline</div>
     <div class="cs-meta-value">Jan – Apr 2026</div>
   </div>
+  <div class="cs-meta-item" role="listitem">
+    <div class="cs-meta-label">Outcome</div>
+    <div class="cs-meta-value">~70% research time saved with AI</div>
+  </div>
 </div>
 
 <main class="cs-body" id="main-content">
 
   <!-- Overview -->
-  <div class="cs-section fade-up">
-    <h2>Overview</h2>
+  <div class="cs-section fade-up" id="overview">
+    <div class="cs-eyebrow">Overview</div>
+    <h2>Research that shaped a live government service</h2>
     <p>During my co-op placement at the Ontario Ministry of Transportation, I contributed to UX research and design for the Ontario Occupational Exposure Registry (OER) — a public-facing self-tracker that allows workers to record and monitor their exposures to hazardous substances in the workplace.</p>
     <p>My core contribution was a two-part research study: <strong>Part A</strong> synthesized usability insights from three participant sessions on the OER prototype, and <strong>Part B</strong> evaluated the use of AI tools in the research workflow itself — measuring time savings, quality trade-offs, and practical guardrails for responsible AI integration in UX research.</p>
     <p>I also served as Student Lead for the co-op cohort, co-organising team activities and a hybrid cross-office event across three Ontario locations.</p>
@@ -76,8 +97,9 @@
   </div>
 
   <!-- Problem & Solution -->
-  <div class="cs-section fade-up">
-    <h2>Problem &amp; Solution</h2>
+  <div class="cs-section fade-up" id="problem">
+    <div class="cs-eyebrow">Problem &amp; Approach</div>
+    <h2>Usability gaps in a tool where errors carry real consequences</h2>
     <div class="cs-two-col">
       <div class="cs-card">
         <h3>The Challenge</h3>
@@ -104,8 +126,9 @@
   </div>
 
   <!-- Biggest Insight -->
-  <div class="cs-section fade-up">
-    <h2>Key Research Finding</h2>
+  <div class="cs-section fade-up" id="insight">
+    <div class="cs-eyebrow">Key Insight</div>
+    <h2>Users thought they were filing an official report — they weren't</h2>
     <div class="cs-highlight">
       <h3>Mental Model Mismatch</h3>
       <p>Across all three sessions, participants sometimes interpreted the OER experience as "official reporting" rather than "personal tracking." When clarified, their perceived value shifted — they saw it as documentation support, recall aid, and self-protection. If this mismatch isn't addressed, users may delay medical care or workplace reporting under the false belief that submitting a self-tracker entry triggers external action.</p>
@@ -114,8 +137,9 @@
   </div>
 
   <!-- Key Patterns -->
-  <div class="cs-section fade-up">
-    <h2>Patterns Across Sessions</h2>
+  <div class="cs-section fade-up" id="patterns">
+    <div class="cs-eyebrow">Patterns</div>
+    <h2>Six patterns repeated across every session</h2>
     <div class="cs-goals" style="grid-template-columns:repeat(3,1fr);">
       <div class="cs-goal">
         <div class="cs-goal-num">Pattern 01</div>
@@ -145,8 +169,9 @@
   </div>
 
   <!-- Recommendations -->
-  <div class="cs-section fade-up">
-    <h2>Prioritised Recommendations</h2>
+  <div class="cs-section fade-up" id="recommendations">
+    <div class="cs-eyebrow">Recommendations</div>
+    <h2>Three priority tiers, ranked by user impact</h2>
     <p>Findings were organised into three priority tiers based on user impact and feasibility:</p>
 
     <div class="cs-two-col" style="margin-top:20px;">
@@ -173,8 +198,9 @@
   </div>
 
   <!-- AI in UX Research -->
-  <div class="cs-section fade-up">
-    <h2>Think.AI — AI Integration in UX Research</h2>
+  <div class="cs-section fade-up" id="thinkai">
+    <div class="cs-eyebrow">Think.AI</div>
+    <h2>AI cut research time by ~70% — with human review non-negotiable</h2>
     <p>Part B of the study was an independent research initiative I led: a structured evaluation of where AI tools genuinely help in a UX research workflow, and where human judgment remains non-negotiable.</p>
 
     <figure class="cs-thumb-fig" style="margin:20px 0 28px;">
@@ -234,8 +260,9 @@
   </div>
 
   <!-- Guardrails -->
-  <div class="cs-section fade-up">
-    <h2>Recommended AI Guardrails</h2>
+  <div class="cs-section fade-up" id="guardrails">
+    <div class="cs-eyebrow">Guardrails</div>
+    <h2>Five rules for trusting AI exactly as far as it deserves</h2>
     <p>Based on the pilot, I developed five practical guardrails for responsible AI integration in UX research:</p>
     <ul>
       <li>Include a "prototype limitations" section in every AI prompt so the model distinguishes real usability issues from prototype gaps</li>
@@ -248,8 +275,9 @@
   </div>
 
   <!-- Live Product -->
-  <div class="cs-section fade-up">
-    <h2>Live Product</h2>
+  <div class="cs-section fade-up" id="result">
+    <div class="cs-eyebrow">Result</div>
+    <h2>The registry is live for Ontario workers today</h2>
     <p>The Ontario Occupational Exposure Registry is publicly accessible on the Ontario government website. Research findings from this study informed the usability, accessibility, and guidance improvements to the registry's self-tracker.</p>
     <a href="https://www.ontario.ca/page/occupational-exposure-registry" target="_blank" rel="noopener noreferrer"
        class="btn-view" style="display:inline-flex;margin-top:16px;"
@@ -259,8 +287,9 @@
   </div>
 
   <!-- Learnings -->
-  <div class="cs-section fade-up">
-    <h2>Learnings</h2>
+  <div class="cs-section fade-up" id="learnings">
+    <div class="cs-eyebrow">Learnings</div>
+    <h2>Efficiency and rigor are not in opposition</h2>
     <p>Government UX research operates under constraints that private-sector work rarely faces: regulatory language requirements, multi-stakeholder sign-off, strict accessibility mandates, and the reality that errors in public services have real consequences for real people. Staying rigorous under those constraints — especially when AI tools are accelerating parts of the workflow — required constant critical review.</p>
     <p>The AI integration pilot taught me that efficiency and rigor are not in opposition: AI at ~70% time savings is only valuable if the human review that follows is systematic. The most important skill wasn't knowing which tools to use — it was knowing exactly where to trust them and exactly where not to.</p>
   </div>

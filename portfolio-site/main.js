@@ -106,6 +106,7 @@ const PROJECTS = [
     tags: ['Government UX', 'Usability Testing', 'AI Research', 'Accessibility'],
     color: '#DCCCE8',
     link: 'mto.html',
+    device: 'laptop',
     thumb: 'thumb-mto-live.webp'
   },
   {
@@ -116,7 +117,8 @@ const PROJECTS = [
     tags: ['E-Commerce UX', 'Accessibility', 'User Research', 'Figma'],
     color: '#D6E5BD',
     link: 'kisan4u.html',
-    thumb: 'thumb-kisan4u.webp'
+    device: 'laptop',
+    thumb: 'kisan4u-page.webp'
   },
   {
     num: 'Case Study 03', emoji: '🍫',
@@ -126,6 +128,7 @@ const PROJECTS = [
     tags: ['Brand UX', 'Visual Design', 'E-Commerce', 'Live Site'],
     color: '#FFCBE1',
     link: 'willies.html',
+    device: 'laptop',
     thumb: 'thumb-willies-2.webp'
   },
   {
@@ -136,8 +139,8 @@ const PROJECTS = [
     tags: ['App Design', 'UX Research', 'Prototyping', 'Community'],
     color: '#BCD8EC',
     link: 'gooseconnect.html',
-    thumb: 'thumb-goose-app.jpg',   // Save the attached app collage image as thumb-goose-app.jpg
-    thumbContain: true              // Show full image without cropping
+    device: 'phone',
+    screens: ['goose-home.webp', 'goose-search.webp', 'goose-profile.webp', 'goose-account.webp']
   },
 ];
 
@@ -262,15 +265,33 @@ function swayGondolas() {
   });
 }
 
+const CURSOR_SVG = `<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  <path d="M12 2 L13.8 10.2 L22 12 L13.8 13.8 L12 22 L10.2 13.8 L2 12 L10.2 10.2 Z"
+    fill="#BCD8EC" stroke="#2a6090" stroke-width="1.2" stroke-linejoin="round"/></svg>`;
+
+function buildDeviceHTML(p) {
+  if (p.device === 'phone' && p.screens) {
+    const imgs = p.screens.map((s, i) =>
+      `<img src="${s}" alt="${p.title} app screen ${i+1}" loading="lazy" style="animation-delay:${i*4}s"/>`
+    ).join('');
+    return `<div class="device-phone"><div class="device-screen">${imgs}</div></div>`;
+  }
+  if (p.thumb) {
+    return `<div class="device-browser">
+      <div class="device-browser-bar"><span></span><span></span><span></span></div>
+      <div class="device-screen">
+        <img src="${p.thumb}" alt="${p.title} website screenshot" loading="lazy"/>
+        <div class="preview-cursor" aria-hidden="true">${CURSOR_SVG}</div>
+      </div>
+    </div>`;
+  }
+  return `<span class="preview-emoji-fallback" style="font-size:6rem">${p.emoji}</span>`;
+}
+
 function buildPreviewHTML(p) {
-  const containClass = p.thumbContain ? ' preview-thumb--contain' : '';
-  const thumbHtml = p.thumb
-    ? `<img src="${p.thumb}" alt="${p.title} design screenshot" class="preview-thumb${containClass}" loading="lazy"/>`
-    : '';
   return `<div class="preview-card-inner">
-    <div class="preview-img preview-img-wrap" style="background:${p.color}">
-      ${thumbHtml}
-      <span class="preview-emoji-fallback" style="${p.thumb?'opacity:0.12':''}; font-size:6rem">${p.emoji}</span>
+    <div class="preview-stage" style="background:${p.color}">
+      ${buildDeviceHTML(p)}
     </div>
     <div class="preview-body">
       <div class="preview-num">${p.num}</div>
@@ -448,3 +469,68 @@ function runNavStarAnimation() {
 }
 
 setTimeout(runNavStarAnimation, 80);
+
+// ===== MOBILE HAMBURGER NAV (injected on every page) =====
+(function () {
+  const nav = document.querySelector('nav');
+  const links = document.querySelector('.nav-links');
+  if (!nav || !links) return;
+  const btn = document.createElement('button');
+  btn.className = 'nav-toggle';
+  btn.type = 'button';
+  btn.setAttribute('aria-label', 'Toggle navigation menu');
+  btn.setAttribute('aria-expanded', 'false');
+  btn.innerHTML = '<span></span><span></span><span></span>';
+  nav.appendChild(btn);
+  btn.addEventListener('click', () => {
+    const open = nav.classList.toggle('nav-open');
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  links.querySelectorAll('a').forEach(a =>
+    a.addEventListener('click', () => {
+      nav.classList.remove('nav-open');
+      btn.setAttribute('aria-expanded', 'false');
+    })
+  );
+})();
+
+// ===== MOBILE PROJECT LIST (replaces ferris wheel on small screens) =====
+(function () {
+  const header = document.querySelector('.projects-header');
+  if (!header || typeof PROJECTS === 'undefined') return;
+  const list = document.createElement('div');
+  list.className = 'projects-mobile';
+  list.innerHTML = PROJECTS.map(p =>
+    `<div class="preview-card">${buildPreviewHTML(p)}</div>`
+  ).join('');
+  header.insertAdjacentElement('afterend', list);
+  // Update hint text on mobile
+  const mq = window.matchMedia('(max-width: 900px)');
+  const hint = header.querySelector('p');
+  function applyHint() {
+    if (hint) hint.textContent = mq.matches
+      ? 'Four projects — tap any to jump in.'
+      : 'Scroll to spin the wheel — or click any cart to jump in.';
+  }
+  applyHint();
+  mq.addEventListener ? mq.addEventListener('change', applyHint) : mq.addListener(applyHint);
+})();
+
+// ===== CASE STUDY TOC SCROLLSPY =====
+(function () {
+  const toc = document.querySelector('.cs-toc');
+  if (!toc) return;
+  const tocLinks = [...toc.querySelectorAll('a')];
+  const sections = tocLinks
+    .map(a => document.querySelector(a.getAttribute('href')))
+    .filter(Boolean);
+  const spy = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        tocLinks.forEach(a => a.classList.toggle('active',
+          a.getAttribute('href') === '#' + e.target.id));
+      }
+    });
+  }, { rootMargin: '-30% 0px -60% 0px' });
+  sections.forEach(s => spy.observe(s));
+})();
