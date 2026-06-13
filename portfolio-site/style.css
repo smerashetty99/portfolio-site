@@ -294,7 +294,7 @@ nav {
 
 /* ===== PROJECTS HEADER ===== */
 .projects-header {
-  background: var(--cream); text-align: center; padding: 13px 48px 0;
+  background: var(--cream); text-align: center; padding: 18px 48px 0;
 }
 .projects-label {
   font-size: 1.15rem !important; padding: 10px 28px !important;
@@ -349,12 +349,13 @@ nav {
   background: white; border-radius: 22px;
   box-shadow: 0 20px 70px rgba(29,63,94,.1);
   overflow: hidden; border: 1.5px solid rgba(188,216,236,.4);
-  opacity: 0; transform: translateY(20px);
-  transition: opacity .4s ease, transform .4s ease;
+  opacity: 0; transform: translateY(20px) scale(.94);
+  transform-origin: left center;
+  transition: opacity .45s ease, transform .45s cubic-bezier(.25,.46,.45,.94);
 }
-.preview-card.visible { opacity: 1; transform: translateY(0); }
+.preview-card.visible { opacity: 1; transform: translateY(0) scale(1); }
 .preview-card-inner {
-  display: grid; grid-template-columns: 400px 1fr; min-height: 480px;
+  display: grid; grid-template-columns: 440px 1fr; min-height: 520px;
 }
 .preview-img {
   display: flex; align-items: center; justify-content: center;
@@ -365,10 +366,10 @@ nav {
 .preview-stage {
   display: flex; align-items: center; justify-content: center;
   position: relative; overflow: hidden;
-  padding: 32px 28px; min-height: 420px;
+  padding: 32px 28px; min-height: 460px;
 }
 .device-browser {
-  width: 100%; max-width: 350px;
+  width: 100%; max-width: 390px;
   background: #fff; border-radius: 12px; overflow: hidden;
   box-shadow: 0 22px 48px rgba(29,63,94,.28);
 }
@@ -379,9 +380,10 @@ nav {
 }
 .device-browser-bar span { width: 7px; height: 7px; border-radius: 50%; background: #c2d3e1; }
 .device-screen { position: relative; height: 250px; overflow: hidden; background: #fff; }
+.device-screen.video-screen { height: auto; aspect-ratio: 1512 / 790; }
 .device-screen > video {
   width: 100%; height: 100%;
-  object-fit: contain; object-position: center top;
+  object-fit: cover; object-position: center top;
   display: block;
 }
 .device-screen > img {
