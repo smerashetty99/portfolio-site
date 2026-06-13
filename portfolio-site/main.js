@@ -96,6 +96,16 @@ const fo = new IntersectionObserver(es => {
 }, { threshold: 0.08 });
 document.querySelectorAll('.fade-up').forEach(el => fo.observe(el));
 
+// ===== CASE STUDY TOC: hide over hero, show once body begins =====
+const csToc = document.querySelector('.cs-toc');
+const csHero = document.querySelector('.cs-hero');
+if (csToc && csHero) {
+  const tocObserver = new IntersectionObserver(([entry]) => {
+    csToc.classList.toggle('visible', !entry.isIntersecting);
+  }, { threshold: 0 });
+  tocObserver.observe(csHero);
+}
+
 // ===== PROJECTS DATA — reordered: OER, Kisan4U, Willie's, GooseConnect =====
 const PROJECTS = [
   {
@@ -130,7 +140,7 @@ const PROJECTS = [
     color: '#FFCBE1',
     link: 'willies.html',
     device: 'laptop',
-    thumb: 'thumb-willies.webp',
+    video: 'willies-homepage.mp4',
     cursorVariant: 3
   },
   {
@@ -286,6 +296,15 @@ function buildDeviceHTML(p) {
     return `<div class="device-browser">
       <div class="device-browser-bar"><span></span><span></span><span></span></div>
       <div class="device-screen multi">${imgs}
+        <div class="preview-cursor${cursorClass}" aria-hidden="true">${CURSOR_SVG}</div>
+      </div>
+    </div>`;
+  }
+  if (p.video) {
+    return `<div class="device-browser">
+      <div class="device-browser-bar"><span></span><span></span><span></span></div>
+      <div class="device-screen">
+        <video src="${p.video}" autoplay loop muted playsinline aria-label="${p.title} website preview"></video>
         <div class="preview-cursor${cursorClass}" aria-hidden="true">${CURSOR_SVG}</div>
       </div>
     </div>`;
