@@ -107,7 +107,7 @@ const PROJECTS = [
     color: '#DCCCE8',
     link: 'mto.html',
     device: 'laptop',
-    thumb: 'thumb-mto-live.webp'
+    screens: ['thumb-mto-live.webp', 'thumb-oer-home.webp']
   },
   {
     num: 'Case Study 02', emoji: '🌾',
@@ -118,7 +118,8 @@ const PROJECTS = [
     color: '#D6E5BD',
     link: 'kisan4u.html',
     device: 'laptop',
-    thumb: 'kisan4u-page.webp'
+    thumb: 'kisan4u-page.webp',
+    cursorVariant: 2
   },
   {
     num: 'Case Study 03', emoji: '🍫',
@@ -129,7 +130,8 @@ const PROJECTS = [
     color: '#FFCBE1',
     link: 'willies.html',
     device: 'laptop',
-    thumb: 'thumb-willies-2.webp'
+    thumb: 'thumb-willies.webp',
+    cursorVariant: 3
   },
   {
     num: 'Case Study 04', emoji: '🦆',
@@ -270,18 +272,30 @@ const CURSOR_SVG = `<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
     fill="#BCD8EC" stroke="#2a6090" stroke-width="1.2" stroke-linejoin="round"/></svg>`;
 
 function buildDeviceHTML(p) {
+  const cursorClass = p.cursorVariant ? ` path-${p.cursorVariant}` : '';
   if (p.device === 'phone' && p.screens) {
     const imgs = p.screens.map((s, i) =>
-      `<img src="${s}" alt="${p.title} app screen ${i+1}" loading="lazy" style="animation-delay:${i*4}s"/>`
+      `<img src="${s}" alt="${p.title} app screen ${i+1}" loading="lazy" style="animation-delay:${i*2}s"/>`
     ).join('');
     return `<div class="device-phone"><div class="device-screen">${imgs}</div></div>`;
+  }
+  if (p.device === 'laptop' && p.screens) {
+    const imgs = p.screens.map((s, i) =>
+      `<img src="${s}" alt="${p.title} website screenshot ${i+1}" loading="lazy"/>`
+    ).join('');
+    return `<div class="device-browser">
+      <div class="device-browser-bar"><span></span><span></span><span></span></div>
+      <div class="device-screen multi">${imgs}
+        <div class="preview-cursor${cursorClass}" aria-hidden="true">${CURSOR_SVG}</div>
+      </div>
+    </div>`;
   }
   if (p.thumb) {
     return `<div class="device-browser">
       <div class="device-browser-bar"><span></span><span></span><span></span></div>
       <div class="device-screen">
         <img src="${p.thumb}" alt="${p.title} website screenshot" loading="lazy"/>
-        <div class="preview-cursor" aria-hidden="true">${CURSOR_SVG}</div>
+        <div class="preview-cursor${cursorClass}" aria-hidden="true">${CURSOR_SVG}</div>
       </div>
     </div>`;
   }

@@ -193,9 +193,9 @@ nav {
   to   { box-shadow: 0 0 3px 1px currentColor; opacity: 0.25; }
 }
 
-/* ===== HERO (65vh = 25% increase from 52vh) ===== */
+/* ===== HERO ===== */
 #hero {
-  height: 65vh; min-height: 420px; padding-top: 60px;
+  height: 72vh; min-height: 460px; padding-top: 60px;
   background: var(--sky-dark);
   display: flex; flex-direction: column;
   align-items: center; justify-content: center;
@@ -307,7 +307,7 @@ nav {
 
 .ferris-sticky {
   position: sticky; top: 60px;
-  height: calc(100vh - 60px);
+  height: min(calc(100vh - 60px), 760px);
   display: flex; align-items: flex-start; justify-content: center; overflow: hidden;
   padding-top: 0;
 }
@@ -323,7 +323,7 @@ nav {
   transition: width .9s cubic-bezier(.25,.46,.45,.94);
   padding: 20px 40px;
 }
-.ferris-inner.split .ferris-wheel-side { width: 46%; }
+.ferris-inner.split .ferris-wheel-side { width: 40%; }
 
 .ferris-svg-wrap {
   width: 100%; max-width: 560px;
@@ -334,7 +334,7 @@ nav {
 
 /* preview side */
 .ferris-preview-side {
-  width: 54%; flex-shrink: 0;
+  width: 60%; flex-shrink: 0;
   padding: 24px 48px 24px 16px;
   opacity: 0; transform: translateX(48px);
   transition: opacity .6s ease .25s, transform .6s ease .25s;
@@ -354,7 +354,7 @@ nav {
 }
 .preview-card.visible { opacity: 1; transform: translateY(0); }
 .preview-card-inner {
-  display: grid; grid-template-columns: 440px 1fr; min-height: 460px;
+  display: grid; grid-template-columns: 400px 1fr; min-height: 480px;
 }
 .preview-img {
   display: flex; align-items: center; justify-content: center;
@@ -388,6 +388,22 @@ nav {
   0%, 6%   { object-position: center top; }
   94%,100% { object-position: center bottom; }
 }
+/* Multi-image laptop screens (crossfade + scroll pan) */
+.device-screen.multi > img {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; object-position: center top;
+  opacity: 0;
+  animation: laptopFade 28s infinite, panScreen 28s ease-in-out infinite alternate;
+}
+.device-screen.multi > img:first-child { opacity: 1; }
+.device-screen.multi > img:nth-child(2) { animation-delay: 14s, 14s; }
+@keyframes laptopFade {
+  0%   { opacity: 1; }
+  42%  { opacity: 1; }
+  50%  { opacity: 0; }
+  92%  { opacity: 0; }
+  100% { opacity: 1; }
+}
 .device-phone {
   width: 160px; border-radius: 28px;
   background: #1d3f5e; padding: 9px;
@@ -397,14 +413,14 @@ nav {
 .device-phone .device-screen img {
   position: absolute; inset: 0; width: 100%; height: 100%;
   object-fit: cover; object-position: center top;
-  opacity: 0; animation: phoneScreens 16s infinite;
+  opacity: 0; animation: phoneScreens 8s infinite;
 }
 @keyframes phoneScreens {
-  0%  { opacity: 0; }
-  4%  { opacity: 1; }
-  27% { opacity: 1; }
-  33% { opacity: 0; }
-  100%{ opacity: 0; }
+  0%   { opacity: 0; }
+  6%   { opacity: 1; }
+  19%  { opacity: 1; }
+  25%  { opacity: 0; }
+  100% { opacity: 0; }
 }
 .preview-cursor {
   position: absolute; width: 15px; height: 15px; z-index: 3;
@@ -419,8 +435,25 @@ nav {
   70%  { left: 70%; top: 24%; }
   100% { left: 22%; top: 30%; }
 }
+@keyframes cursorPath2 {
+  0%   { left: 72%; top: 26%; }
+  28%  { left: 30%; top: 34%; }
+  55%  { left: 46%; top: 74%; }
+  80%  { left: 20%; top: 60%; }
+  100% { left: 72%; top: 26%; }
+}
+@keyframes cursorPath3 {
+  0%   { left: 28%; top: 70%; }
+  30%  { left: 66%; top: 64%; }
+  60%  { left: 58%; top: 22%; }
+  85%  { left: 24%; top: 30%; }
+  100% { left: 28%; top: 70%; }
+}
+.preview-cursor.path-2 { animation-name: cursorPath2; animation-duration: 13.5s; }
+.preview-cursor.path-3 { animation-name: cursorPath3; animation-duration: 9.5s; }
 @media (prefers-reduced-motion: reduce) {
   .device-screen > img, .device-phone .device-screen img, .preview-cursor { animation: none !important; }
+  .device-screen.multi > img:first-child { opacity: 1; }
   .device-phone .device-screen img:first-child { opacity: 1; }
   .preview-cursor { display: none; }
 }
