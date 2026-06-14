@@ -211,7 +211,7 @@ nav {
 
 .gate {
   position: relative; z-index: 2;
-  text-align: center; padding: 20px 40px 65px;
+  text-align: center; padding: 0 40px 65px;
   max-width: 820px;
 }
 /* Flows normally above the heading so it never overlaps at short/odd
@@ -1096,7 +1096,7 @@ nav.nav-open .nav-toggle span:nth-child(3) { transform: translateY(-7.5px) rotat
   .nav-links .nav-cta { margin-top: 8px; }
 
   #hero { height: auto; min-height: 78vh; padding-bottom: 56px; }
-  .gate { padding: 88px 24px 64px; }
+  .gate { padding: 0 24px 64px; }
   .gate-sign { font-size: 0.68rem; padding: 5px 14px; }
   .gate h1 { font-size: clamp(1.9rem, 8.5vw, 2.6rem); }
   .gate-subtitle { font-size: 0.92rem; }
