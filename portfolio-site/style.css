@@ -173,11 +173,11 @@ nav {
   width: 11px; height: 15px; border-radius: 50% 50% 40% 40%;
   position: relative; animation: glowBright 1.6s ease-in-out infinite alternate;
 }
-.bulb:nth-child(5n+1) { background: var(--pink); }
-.bulb:nth-child(5n+2) { background: var(--yellow); }
-.bulb:nth-child(5n+3) { background: var(--sky); }
-.bulb:nth-child(5n+4) { background: var(--peach); }
-.bulb:nth-child(5n)   { background: var(--lavender); }
+.bulb:nth-child(5n+1) { background: var(--pink); color: var(--pink); }
+.bulb:nth-child(5n+2) { background: var(--yellow); color: var(--yellow); }
+.bulb:nth-child(5n+3) { background: var(--sky); color: var(--sky); }
+.bulb:nth-child(5n+4) { background: var(--peach); color: var(--peach); }
+.bulb:nth-child(5n)   { background: var(--lavender); color: var(--lavender); }
 .bulb:nth-child(even) { animation-name: glowDim; }
 .bulb::before {
   content: ''; width: 5px; height: 5px;
@@ -185,12 +185,12 @@ nav {
   top: -5px; left: 50%; transform: translateX(-50%); border-radius: 2px;
 }
 @keyframes glowBright {
-  from { box-shadow: 0 0 3px 1px currentColor; opacity: 0.25; }
-  to   { box-shadow: 0 0 14px 6px currentColor; opacity: 1; }
+  from { box-shadow: 0 0 2px 0 currentColor; opacity: 0.3; }
+  to   { box-shadow: 0 0 20px 6px currentColor, 0 0 36px 12px currentColor; opacity: 1; }
 }
 @keyframes glowDim {
-  from { box-shadow: 0 0 14px 6px currentColor; opacity: 1; }
-  to   { box-shadow: 0 0 3px 1px currentColor; opacity: 0.25; }
+  from { box-shadow: 0 0 20px 6px currentColor, 0 0 36px 12px currentColor; opacity: 1; }
+  to   { box-shadow: 0 0 2px 0 currentColor; opacity: 0.3; }
 }
 
 /* ===== HERO ===== */
