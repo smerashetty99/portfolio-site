@@ -112,7 +112,7 @@ const PROJECTS = [
     num: 'Case Study 01', emoji: '🏛️',
     title: 'Ontario Exposure Registry',
     shortLabel: 'Ontario MTO',
-    desc: 'AI-assisted usability research for a government self-tracker at Ontario MTO. Led 3 sessions, produced AI vs. manual time study (~70% efficiency gain), synthesized recommendations for the live platform.',
+    desc: 'Owned UX research end to end on a government self-tracker at Ontario MTO: ran 3 sessions, built an AI vs. manual time study (~70% efficiency gain), and shipped recommendations for the live platform. Also supported Figma design alongside a team of 3.',
     tags: ['Government UX', 'Usability Testing', 'AI Research', 'Accessibility'],
     color: '#DCCCE8',
     link: 'mto.html',
@@ -252,12 +252,83 @@ function buildFerris() {
 buildFerris();
 
 // ===== FERRIS INTERACTION =====
-const ferrisSection = document.getElementById('ferris-section');
-const ferrisInner   = document.querySelector('.ferris-inner');
-const wheelGroup    = document.getElementById('fw-wheel');
-const previewCard   = document.querySelector('.preview-card');
+const ferrisSection    = document.getElementById('ferris-section');
+const ferrisInner      = document.querySelector('.ferris-inner');
+const wheelGroup       = document.getElementById('fw-wheel');
+const previewCard      = document.querySelector('.preview-card');
+const ferrisPreviewSide = document.querySelector('.ferris-preview-side');
 
 let currentProject = -1, hasSplit = false, currentRotation = 0;
+
+// ===== GONDOLA -> PREVIEW CARD MORPH =====
+// Animates a colored "ghost" from the clicked gondola cart's screen position
+// into the preview card's position, using a FLIP-style measurement so the
+// real card's layout (including the split-state shift) is matched exactly.
+function morphGondolaToCard(index, gondolaRectEl) {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if (!gondolaRectEl || !previewCard || !ferrisPreviewSide || !ferrisInner) return;
+
+  const fromRect = gondolaRectEl.getBoundingClientRect();
+  if (!fromRect.width || !fromRect.height) return;
+
+  const fromColor  = PROJECTS[index].color;
+  const fromRadius = 14 * (fromRect.width / GONDOLA_W);
+
+  // --- FLIP: measure the card's final ("split") position without animating ---
+  const wasSplit = ferrisInner.classList.contains('split');
+  const prevPSTransition   = ferrisPreviewSide.style.transition;
+  const prevCardTransition = previewCard.style.transition;
+  ferrisPreviewSide.style.transition = 'none';
+  previewCard.style.transition = 'none';
+
+  if (!wasSplit) {
+    ferrisInner.classList.add('split');
+    ferrisPreviewSide.style.opacity = '1';
+    ferrisPreviewSide.style.transform = 'translateX(0)';
+  }
+  void ferrisPreviewSide.offsetHeight; // force reflow
+  const toRect = previewCard.getBoundingClientRect();
+
+  // revert the instant changes (real transition kicks in afterwards as normal)
+  if (!wasSplit) {
+    ferrisInner.classList.remove('split');
+    ferrisPreviewSide.style.opacity = '';
+    ferrisPreviewSide.style.transform = '';
+    void ferrisPreviewSide.offsetHeight;
+  }
+  ferrisPreviewSide.style.transition = prevPSTransition;
+  previewCard.style.transition = prevCardTransition;
+
+  if (!toRect.width || !toRect.height) return;
+
+  // --- build and animate the ghost ---
+  const ghost = document.createElement('div');
+  ghost.className = 'gondola-morph';
+  ghost.setAttribute('aria-hidden', 'true');
+  ghost.style.left   = fromRect.left + 'px';
+  ghost.style.top    = fromRect.top + 'px';
+  ghost.style.width  = fromRect.width + 'px';
+  ghost.style.height = fromRect.height + 'px';
+  ghost.style.borderRadius = fromRadius + 'px';
+  ghost.style.background = fromColor;
+  ghost.style.opacity = '1';
+  document.body.appendChild(ghost);
+  void ghost.offsetHeight; // commit the "from" frame before animating
+
+  requestAnimationFrame(() => {
+    ghost.style.left   = toRect.left + 'px';
+    ghost.style.top    = toRect.top + 'px';
+    ghost.style.width  = toRect.width + 'px';
+    ghost.style.height = toRect.height + 'px';
+    ghost.style.borderRadius = '22px';
+    ghost.style.borderColor = 'rgba(188,216,236,.4)';
+    ghost.style.boxShadow = '0 20px 70px rgba(29,63,94,.1)';
+    ghost.style.background = '#ffffff';
+    ghost.style.opacity = '0';
+  });
+
+  setTimeout(() => ghost.remove(), 650);
+}
 
 function applyGondolaCounterRotation(rotation) {
   document.querySelectorAll('.gondola-outer').forEach(outer => {
@@ -303,7 +374,7 @@ function buildDeviceHTML(p) {
   if (p.video) {
     return `<div class="device-browser">
       <div class="device-browser-bar"><span></span><span></span><span></span></div>
-      <div class="device-screen">
+      <div class="device-screen video-screen">
         <video src="${p.video}" autoplay loop muted playsinline aria-label="${p.title} website preview"></video>
         <div class="preview-cursor${cursorClass}" aria-hidden="true">${CURSOR_SVG}</div>
       </div>
@@ -375,12 +446,26 @@ window.addEventListener('scroll', () => {
   }
 }, { passive: true });
 
+function selectGondola(g) {
+  const idx = parseInt(g.dataset.index);
+  if (idx !== currentProject) morphGondolaToCard(idx, g.querySelector('.gondola-rect'));
+  if (!hasSplit) { hasSplit=true; ferrisInner.classList.add('split'); setTimeout(()=>goToProject(idx),250); }
+  else goToProject(idx);
+}
+
 document.getElementById('ferris-svg')?.addEventListener('click', e => {
   const g = e.target.closest('.gondola-group');
   if (!g) return;
-  const idx = parseInt(g.dataset.index);
-  if (!hasSplit) { hasSplit=true; ferrisInner.classList.add('split'); setTimeout(()=>goToProject(idx),250); }
-  else goToProject(idx);
+  selectGondola(g);
+});
+
+// Keyboard activation for gondola "buttons" (role="button" + tabindex="0")
+document.getElementById('ferris-svg')?.addEventListener('keydown', e => {
+  if (e.key !== 'Enter' && e.key !== ' ' && e.key !== 'Spacebar') return;
+  const g = e.target.closest('.gondola-group');
+  if (!g) return;
+  e.preventDefault();
+  selectGondola(g);
 });
 
 // ===== SMOOTH SCROLL =====
@@ -525,6 +610,32 @@ setTimeout(runNavStarAnimation, 80);
       btn.setAttribute('aria-expanded', 'false');
     })
   );
+})();
+
+// ===== ALL PROJECTS GRID (desktop — shown after ferris scroll ends) =====
+(function () {
+  const grid = document.querySelector('.all-projects-grid');
+  if (!grid || typeof PROJECTS === 'undefined') return;
+  grid.innerHTML = PROJECTS.map(p => `
+    <a href="${p.link}" class="all-project-card" aria-label="View ${p.title} case study">
+      <div class="all-project-cover" style="background:${p.color}">
+        <span class="all-project-emoji">${p.emoji}</span>
+      </div>
+      <div class="all-project-body">
+        <div class="all-project-num">${p.num}</div>
+        <h3 class="all-project-title">${p.title}</h3>
+        <p class="all-project-desc">${p.desc}</p>
+        <div class="all-project-tags">${p.tags.map(t=>`<span class="all-project-tag">${t}</span>`).join('')}</div>
+        <span class="all-project-link">View case study →</span>
+      </div>
+    </a>
+  `).join('');
+  // Fade-up observer already handles .fade-up — mark the section wrappers
+  document.querySelectorAll('.all-project-card').forEach((el, i) => {
+    el.classList.add('fade-up');
+    el.style.transitionDelay = (0.05 + i * 0.08) + 's';
+    fo.observe(el);
+  });
 })();
 
 // ===== MOBILE PROJECT LIST (replaces ferris wheel on small screens) =====
